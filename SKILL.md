@@ -11,31 +11,33 @@ metadata:
       bins:
         - programmapper-cli
     install:
-      - kind: go
+      - kind: source
         bins: [programmapper-cli]
-        module: github.com/mvanhorn/printing-press-library/library/other/programmapper/cmd/programmapper-cli
+        repo: https://github.com/johnnyrobot/programmapper-cli
+        build: go build -o programmapper-cli ./cmd/programmapper-cli
 ---
 
 # Program Pathways Mapper — Printing Press CLI
 
 ## Prerequisites: Install the CLI
 
-This skill drives the `programmapper-cli` binary. **You must verify the CLI is installed before invoking any command from this skill.** If it is missing, install it first:
+This skill drives the `programmapper-cli` binary. **You must verify the CLI is installed before invoking any command from this skill.** If it is missing, build it from source (requires Go 1.26.4 or newer):
 
-1. Install via the Printing Press installer. It defaults binaries to `$HOME/.local/bin` on macOS/Linux and `%LOCALAPPDATA%\Programs\PrintingPress\bin` on Windows:
+1. Clone the repo and build the binary. The repo is **private**, so this needs access to the `johnnyrobot` GitHub account (`gh auth login` or an SSH key already configured):
    ```bash
-   npx -y @mvanhorn/printing-press-library install programmapper --cli-only
+   git clone https://github.com/johnnyrobot/programmapper-cli.git
+   cd programmapper-cli
+   go build -o programmapper-cli ./cmd/programmapper-cli
    ```
-2. Verify: `programmapper-cli --version`
-3. Ensure the reported install directory is on `$PATH` for the agent/runtime that will invoke this skill.
-
-If the `npx` install fails (no Node, offline, etc.), fall back to a direct Go install (requires Go 1.26.4 or newer). This installs into `$GOPATH/bin` (default `$HOME/go/bin`), so add that directory to `$PATH` instead:
-
-```bash
-go install github.com/mvanhorn/printing-press-library/library/other/programmapper/cmd/programmapper-cli@latest
-```
+2. Put the binary on `$PATH` (defaults below assume `$HOME/.local/bin` is on `$PATH`):
+   ```bash
+   install -m 0755 programmapper-cli "$HOME/.local/bin/programmapper-cli"
+   ```
+3. Verify: `programmapper-cli --version`
 
 If `--version` reports "command not found" after install, the runtime cannot see the binary directory on `$PATH`. Do not proceed with skill commands until verification succeeds.
+
+> `go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli@latest` is **not** available yet: the Go module is named `programmapper-cli` (a local name), not the repo URL, so `go install`/`go get` cannot resolve it. Clone-and-build is the supported path until the module is renamed to `github.com/johnnyrobot/programmapper-cli`.
 
 Program Pathways Mapper publishes the official 'how to finish your degree' roadmaps for hundreds of California community colleges, but only through a click-heavy, one-college-at-a-time web app with no API key and no export. This CLI mirrors a college's full catalog into local SQLite, then lets you - or an AI advisor - search across colleges, build a term-by-term plan with units rollups, compare two programs, find every program that requires a course, and diff catalog years. Offline, scriptable, and agent-native.
 
@@ -338,9 +340,10 @@ Parse `$ARGUMENTS`:
 
 ## MCP Server Installation
 
-1. Install the MCP server:
+1. Build the MCP server from the cloned repo (see Prerequisites above), then put it on `$PATH`:
    ```bash
-   go install github.com/mvanhorn/printing-press-library/library/other/programmapper/cmd/programmapper-mcp@latest
+   go build -o programmapper-mcp ./cmd/programmapper-mcp
+   install -m 0755 programmapper-mcp "$HOME/.local/bin/programmapper-mcp"
    ```
 2. Register with Claude Code:
    ```bash
