@@ -9,7 +9,7 @@ builds:
     env:
       - CGO_ENABLED=0
     ldflags:
-      - -s -w -X programmapper-cli/internal/cli.version={{ .Version }}
+      - -s -w -X github.com/johnnyrobot/programmapper-cli/internal/cli.version={{ .Version }}
     targets:
       - darwin_amd64
       - darwin_arm64
@@ -39,13 +39,3 @@ archives:
         formats: [zip]
 checksum:
   name_template: checksums.txt
-brews:
-  - name: programmapper-cli
-    repository:
-      owner: johnnyrobot
-      name: homebrew-tap
-    homepage: "https://github.com/johnnyrobot/programmapper-cli"
-    description: "Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable CLI with an offline SQLite catalog and term-by-term planning no other ProgramMapper tool has."
-    install: |
-      bin.install "programmapper-cli"
-      bin.install "programmapper-mcp"

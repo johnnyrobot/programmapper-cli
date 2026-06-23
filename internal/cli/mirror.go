@@ -13,14 +13,46 @@ package cli
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/spf13/cobra"
 
 	"github.com/johnnyrobot/programmapper-cli/internal/client"
 	"github.com/johnnyrobot/programmapper-cli/internal/cliutil"
 )
+
+// mirrorThrottleRetries bounds how many times the deep pass backs off and
+// retries a single throttled fetch before giving up and stopping (resumable).
+const mirrorThrottleRetries = 6
+
+// pmFetchWithBackoff retries fn while it returns a WAF rate-limit error,
+// sleeping with capped exponential backoff (5s, 10s, ... up to 2m) so a deep
+// mirror rides through transient throttling instead of stopping at the first
+// 429/403. ctx cancellation (Ctrl-C / shutdown) aborts immediately. After
+// mirrorThrottleRetries it returns the last error so the caller can stop
+// gracefully — the mirror is resumable, so a later run continues.
+func pmFetchWithBackoff[T any](ctx context.Context, cmd *cobra.Command, label string, fn func() (T, error)) (T, error) {
+	v, err := fn()
+	for attempt := 0; pmIsRateLimited(err) && attempt < mirrorThrottleRetries; attempt++ {
+		wait := time.Duration(1<<uint(attempt)) * 5 * time.Second
+		if wait > 2*time.Minute {
+			wait = 2 * time.Minute
+		}
+		mirrorWarn(cmd, "throttled fetching %s; backing off %s (retry %d/%d)", label, wait, attempt+1, mirrorThrottleRetries)
+		timer := time.NewTimer(wait)
+		select {
+		case <-ctx.Done():
+			timer.Stop()
+			return v, ctx.Err()
+		case <-timer.C:
+		}
+		v, err = fn()
+	}
+	return v, err
+}
 
 func newMirrorCmd(flags *rootFlags) *cobra.Command {
 	var dbPath string
@@ -59,8 +91,12 @@ many paced requests and is resumable, so re-running continues where it stopped.`
 			}
 			college := args[0]
 
-			ctx, cancel := boundCtx(cmd.Context(), flags)
-			defer cancel()
+			// A full deep mirror makes hundreds of paced requests and can run
+			// for minutes, so it must NOT be bounded by the per-request
+			// --timeout the way single-shot commands are. Each HTTP request is
+			// still bounded by the client's own timeout (flags.timeout via
+			// flags.newClient); the overall walk runs until done or Ctrl-C.
+			ctx := cmd.Context()
 
 			c, err := flags.newClient()
 			if err != nil {
@@ -184,10 +220,16 @@ many paced requests and is resumable, so re-running continues where it stopped.`
 						continue
 					}
 				}
-				prog, err := pmFetchProgramThrottled(ctx, c, limiter, scid, pid)
+				prog, err := pmFetchWithBackoff(ctx, cmd, "program "+pid, func() (pmProgram, error) {
+					return pmFetchProgramThrottled(ctx, c, limiter, scid, pid)
+				})
 				if err != nil {
+					if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
+						stats.rateLimited = true
+						break
+					}
 					if pmIsRateLimited(err) {
-						mirrorWarn(cmd, "rate-limited at program %s; stopping deep pass with %d maps (re-run mirror to resume)", pid, stats.maps)
+						mirrorWarn(cmd, "still throttled after %d retries; stopping deep pass with %d maps (re-run mirror to resume)", mirrorThrottleRetries, stats.maps)
 						stats.rateLimited = true
 						break
 					}
@@ -202,10 +244,16 @@ many paced requests and is resumable, so re-running continues where it stopped.`
 				if mapID == "" {
 					continue
 				}
-				m, err := pmFetchMapThrottled(ctx, c, limiter, scid, mapID)
+				m, err := pmFetchWithBackoff(ctx, cmd, "map for "+pid, func() (pmMap, error) {
+					return pmFetchMapThrottled(ctx, c, limiter, scid, mapID)
+				})
 				if err != nil {
+					if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
+						stats.rateLimited = true
+						break
+					}
 					if pmIsRateLimited(err) {
-						mirrorWarn(cmd, "rate-limited fetching map for %s; stopping deep pass (re-run mirror to resume)", pid)
+						mirrorWarn(cmd, "still throttled after %d retries; stopping deep pass (re-run mirror to resume)", mirrorThrottleRetries)
 						stats.rateLimited = true
 						break
 					}
