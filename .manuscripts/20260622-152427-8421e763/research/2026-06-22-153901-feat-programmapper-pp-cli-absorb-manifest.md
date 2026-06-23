@@ -28,8 +28,8 @@ transcendence (local SQLite mirror + cross-entity queries the SPA cannot do).
 | 18 | "Choose one of" choice opportunity detail | ProgramMapper web UI | (generated endpoint) transfer choice-opportunity |
 | 19 | Career/salary data by SOC code | ProgramMapper web UI | (generated endpoint) occupations careers |
 | 20 | API version / health | ProgramMapper web UI | (generated endpoint) meta info |
-| 21 | Offline catalog mirror (sync) | (framework) | (behavior in programmapper-pp-cli sync) local SQLite mirror of colleges/programs/courses/maps |
-| 22 | Cross-college FTS (programs + courses) | (framework) | (behavior in programmapper-pp-cli search) FTS5 across all synced colleges; `--type program`/`--type course` |
+| 21 | Offline catalog mirror (sync) | (framework) | (behavior in programmapper-cli sync) local SQLite mirror of colleges/programs/courses/maps |
+| 22 | Cross-college FTS (programs + courses) | (framework) | (behavior in programmapper-cli search) FTS5 across all synced colleges; `--type program`/`--type course` |
 
 ## Transcendence (only possible with our local-mirror approach)
 | # | Feature | Command | Buildability | Why Only We Can Do This | Long Description |

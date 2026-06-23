@@ -16,7 +16,7 @@ func newSiteContentsHomeCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "home <site_content_id>",
 		Short:       "Get the home page: interest clusters (Areas of Interest), title, about",
-		Example:     "  programmapper-pp-cli site-contents home 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli site-contents home 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "site-contents.home", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/home-page-content", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

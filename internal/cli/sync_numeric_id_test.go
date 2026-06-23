@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"programmapper-pp-cli/internal/store"
+	"programmapper-cli/internal/store"
 )
 
 func TestSyncSingleObject_PreservesLargeIntegerResourceIDs(t *testing.T) {

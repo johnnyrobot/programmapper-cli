@@ -16,7 +16,7 @@ func newProgramMapsGetCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "get <site_content_id> <map_id>",
 		Short:       "Get a program map: terms -> course/choice opportunities with units",
-		Example:     "  programmapper-pp-cli program-maps get 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli program-maps get 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "program-maps.get", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/program-maps/{map_id}", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

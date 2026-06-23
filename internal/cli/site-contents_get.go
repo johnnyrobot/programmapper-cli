@@ -16,7 +16,7 @@ func newSiteContentsGetCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "get <site_content_id>",
 		Short:       "Get a college-year's config (name, year, theme, titles)",
-		Example:     "  programmapper-pp-cli site-contents get 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli site-contents get 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "site-contents.get", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}", "mcp:read-only": "true", "pp:no-error-path-probe": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

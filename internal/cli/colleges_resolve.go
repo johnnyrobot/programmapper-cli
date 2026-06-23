@@ -17,7 +17,7 @@ func newCollegesResolveCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "resolve",
 		Short:       "Resolve the college(s) for a ProgramMapper vanity URL",
-		Example:     "  programmapper-pp-cli colleges resolve --vanity-url https://la-mission.programmapper.ws",
+		Example:     "  programmapper-cli colleges resolve --vanity-url https://la-mission.programmapper.ws",
 		Annotations: map[string]string{"pp:endpoint": "colleges.resolve", "pp:method": "GET", "pp:path": "/colleges", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			// Bare invocation of a command with required input prints help

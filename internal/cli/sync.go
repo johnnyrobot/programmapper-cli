@@ -11,8 +11,8 @@ import (
 	"io"
 	"net/url"
 	"os"
-	"programmapper-pp-cli/internal/cliutil"
-	"programmapper-pp-cli/internal/store"
+	"programmapper-cli/internal/cliutil"
+	"programmapper-cli/internal/store"
 	"regexp"
 	"strconv"
 	"strings"
@@ -83,22 +83,22 @@ Resource scoping:
   the dependent by name; the parent table must already be populated
   from a prior sync.`,
 		Example: `  # Sync all resources
-  programmapper-pp-cli sync
+  programmapper-cli sync
 
   # Sync specific resources only
-  programmapper-pp-cli sync --resources channels,messages
+  programmapper-cli sync --resources channels,messages
 
   # Full resync (ignore previous checkpoint)
-  programmapper-pp-cli sync --full
+  programmapper-cli sync --full
 
   # Incremental sync: only records from the last 7 days
-  programmapper-pp-cli sync --since 7d
+  programmapper-cli sync --since 7d
 
   # Parallel sync with 8 workers
-  programmapper-pp-cli sync --concurrency 8
+  programmapper-cli sync --concurrency 8
 
   # Latest-only: refresh head of each resource, no historical backfill
-  programmapper-pp-cli sync --latest-only`,
+  programmapper-cli sync --latest-only`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			userParams, err := parseSyncUserParams(paramFlags, resourceParamFlags, globalParamFlags)
 			if err != nil {
@@ -112,7 +112,7 @@ Resource scoping:
 			c.NoCache = true
 
 			if dbPath == "" {
-				dbPath = defaultDBPath("programmapper-pp-cli")
+				dbPath = defaultDBPath("programmapper-cli")
 			}
 
 			db, err := store.OpenWithContext(cmd.Context(), dbPath)

@@ -13,9 +13,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"programmapper-pp-cli/internal/client"
-	"programmapper-pp-cli/internal/cliutil"
-	"programmapper-pp-cli/internal/config"
+	"programmapper-cli/internal/client"
+	"programmapper-cli/internal/cliutil"
+	"programmapper-cli/internal/config"
 )
 
 type rootFlags struct {
@@ -143,7 +143,7 @@ func isCobraUsageError(err error) bool {
 
 func newRootCmd(flags *rootFlags) *cobra.Command {
 	rootCmd := &cobra.Command{
-		Use:   "programmapper-pp-cli",
+		Use:   "programmapper-cli",
 		Short: `Programmapper CLI — Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable C…`,
 		Long: `Programmapper CLI — Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable C…
 
@@ -157,12 +157,12 @@ Highlights (not in the official API docs):
   • transfer-options   Combine a program's CSU/UC linked transfer colleges and linked program maps into one view.
 
 Agent mode: add --agent to any command for JSON output + non-interactive mode.
-Health check: run 'programmapper-pp-cli doctor' to verify auth and connectivity.
+Health check: run 'programmapper-cli doctor' to verify auth and connectivity.
 See README.md or the bundled SKILL.md for recipes.`,
 		SilenceUsage: true,
 		Version:      version,
 	}
-	rootCmd.SetVersionTemplate("programmapper-pp-cli {{ .Version }}\n")
+	rootCmd.SetVersionTemplate("programmapper-cli {{ .Version }}\n")
 
 	rootCmd.PersistentFlags().BoolVar(&flags.asJSON, "json", false, "Output as JSON")
 	rootCmd.PersistentFlags().BoolVar(&flags.compact, "compact", false, "Return only key fields (id, name, status, timestamps) for minimal token usage")
@@ -184,7 +184,7 @@ See README.md or the bundled SKILL.md for recipes.`,
 	rootCmd.PersistentFlags().BoolVar(&flags.allowPartialFailure, "allow-partial-failure", false, "Downgrade response-body partial-failure (e.g. partialFailureError) to a warning instead of a non-zero exit")
 	rootCmd.PersistentFlags().StringVar(&flags.dataSource, "data-source", "auto", "Data source for read commands: auto (live with local fallback), live (API only), local (synced data only)")
 	rootCmd.PersistentFlags().DurationVar(&flags.maxAge, "max-age", 30*time.Minute, "Maximum acceptable age of local-store data before a stderr hint suggests sync; 0 disables")
-	rootCmd.PersistentFlags().StringVar(&flags.profileName, "profile", "", "Apply values from a saved profile (see 'programmapper-pp-cli profile list')")
+	rootCmd.PersistentFlags().StringVar(&flags.profileName, "profile", "", "Apply values from a saved profile (see 'programmapper-cli profile list')")
 	rootCmd.PersistentFlags().StringVar(&flags.deliverSpec, "deliver", "", "Route output to a sink: stdout (default), file:<path>, webhook:<url>")
 	rootCmd.PersistentFlags().Float64Var(&flags.rateLimit, "rate-limit", 0, "Max requests per second (0 to disable)")
 

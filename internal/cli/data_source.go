@@ -17,8 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"programmapper-pp-cli/internal/client"
-	"programmapper-pp-cli/internal/store"
+	"programmapper-cli/internal/client"
+	"programmapper-cli/internal/store"
 )
 
 const networkFallbackReason = "api_unreachable"
@@ -174,7 +174,7 @@ func resolveReadWithStrategy(ctx context.Context, c *client.Client, flags *rootF
 		// Network error — try local fallback
 		fallbackData, fallbackProv, fallbackErr := resolveLocal(ctx, flags, hintWriter, resourceType, isList, path, params, networkFallbackReason)
 		if fallbackErr != nil {
-			return nil, DataProvenance{}, fmt.Errorf("API unreachable and no local data. Run 'programmapper-pp-cli sync' to enable offline access.\n\nOriginal error: %w", err)
+			return nil, DataProvenance{}, fmt.Errorf("API unreachable and no local data. Run 'programmapper-cli sync' to enable offline access.\n\nOriginal error: %w", err)
 		}
 		return fallbackData, attachFreshness(fallbackProv, flags), nil
 	}
@@ -226,7 +226,7 @@ func resolvePaginatedReadWithStrategy(ctx context.Context, c *client.Client, fla
 		}
 		fallbackData, fallbackProv, fallbackErr := resolveLocal(ctx, flags, hintWriter, resourceType, true, path, params, networkFallbackReason)
 		if fallbackErr != nil {
-			return nil, DataProvenance{}, fmt.Errorf("API unreachable and no local data. Run 'programmapper-pp-cli sync' to enable offline access.\n\nOriginal error: %w", err)
+			return nil, DataProvenance{}, fmt.Errorf("API unreachable and no local data. Run 'programmapper-cli sync' to enable offline access.\n\nOriginal error: %w", err)
 		}
 		return fallbackData, attachFreshness(fallbackProv, flags), nil
 	}
@@ -278,7 +278,7 @@ var writeThroughNestedEnvelopeKeys = []string{"data", "Data", "result", "Result"
 // FTS search covers everything the user has looked up — not just explicit syncs.
 // Best-effort: failures are silently ignored (the live result already succeeded).
 func writeThroughCache(ctx context.Context, resourceType string, data json.RawMessage) {
-	db, err := store.OpenWithContext(ctx, defaultDBPath("programmapper-pp-cli"))
+	db, err := store.OpenWithContext(ctx, defaultDBPath("programmapper-cli"))
 	if err != nil {
 		return
 	}
@@ -453,7 +453,7 @@ func writeMutationResponseToStore(ctx context.Context, resourceType string, data
 		return
 	}
 
-	db, err := store.OpenWithContext(ctx, defaultDBPath("programmapper-pp-cli"))
+	db, err := store.OpenWithContext(ctx, defaultDBPath("programmapper-cli"))
 	if err != nil {
 		return
 	}
@@ -554,12 +554,12 @@ func mutationResponseHasID(resourceType string, data json.RawMessage) bool {
 // filters (query params, path scoping like /teams/{id}/users) are NOT applied locally.
 // The provenance metadata includes "unscoped":true when params were present but not applied.
 func resolveLocal(ctx context.Context, flags *rootFlags, hintWriter io.Writer, resourceType string, isList bool, path string, params map[string]string, reason string) (json.RawMessage, DataProvenance, error) {
-	db, err := openStoreForRead(ctx, "programmapper-pp-cli")
+	db, err := openStoreForRead(ctx, "programmapper-cli")
 	if err != nil {
-		return nil, DataProvenance{}, fmt.Errorf("opening local database: %w\nRun 'programmapper-pp-cli sync' first.", err)
+		return nil, DataProvenance{}, fmt.Errorf("opening local database: %w\nRun 'programmapper-cli sync' first.", err)
 	}
 	if db == nil {
-		return nil, DataProvenance{}, fmt.Errorf("no local data. Run 'programmapper-pp-cli sync' first")
+		return nil, DataProvenance{}, fmt.Errorf("no local data. Run 'programmapper-cli sync' first")
 	}
 	defer db.Close()
 
@@ -590,7 +590,7 @@ func resolveLocal(ctx context.Context, flags *rootFlags, hintWriter io.Writer, r
 			items = append(items, r)
 		}
 		if len(items) == 0 {
-			return nil, DataProvenance{}, fmt.Errorf("no local data for %q. Run 'programmapper-pp-cli sync' first", resourceType)
+			return nil, DataProvenance{}, fmt.Errorf("no local data for %q. Run 'programmapper-cli sync' first", resourceType)
 		}
 		// Marshal []json.RawMessage into a single JSON array
 		data, err := json.Marshal(items)
@@ -607,7 +607,7 @@ func resolveLocal(ctx context.Context, flags *rootFlags, hintWriter io.Writer, r
 	item, err := db.Get(resourceType, id)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			return nil, DataProvenance{}, fmt.Errorf("resource %q with ID %q not found in local store. Run 'programmapper-pp-cli sync' first", resourceType, id)
+			return nil, DataProvenance{}, fmt.Errorf("resource %q with ID %q not found in local store. Run 'programmapper-cli sync' first", resourceType, id)
 		}
 		return nil, DataProvenance{}, fmt.Errorf("querying local store: %w", err)
 	}

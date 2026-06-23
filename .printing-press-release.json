@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "slug": "programmapper",
-  "cli_name": "programmapper-pp-cli",
+  "cli_name": "programmapper-cli",
   "version": "",
   "released_at": "",
   "source_commit": "",

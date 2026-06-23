@@ -62,7 +62,7 @@ Diff a program's current map against the same program's map in a prior catalog
 year, reporting added and removed courses and the units delta. The prior-year map
 is fetched live; pass --from-year to pick the year (default: the most recent prior
 year that has a map).`),
-		Example:     "  programmapper-pp-cli diff-years 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --from-year 2023 --json",
+		Example:     "  programmapper-cli diff-years 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --from-year 2023 --json",
 		Annotations: map[string]string{"mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 && cmd.Flags().NFlag() == 0 {

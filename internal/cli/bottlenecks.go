@@ -41,8 +41,8 @@ func newNovelBottlenecksCmd(flags *rootFlags) *cobra.Command {
 		Long: strings.TrimSpace(`
 Rank courses by how many distinct program maps require them, surfacing the
 high-leverage courses that unlock the most programs. Requires a deep mirror
-(programmapper-pp-cli mirror <college> --maps).`),
-		Example:     "  programmapper-pp-cli bottlenecks --limit 20 --json",
+(programmapper-cli mirror <college> --maps).`),
+		Example:     "  programmapper-cli bottlenecks --limit 20 --json",
 		Annotations: map[string]string{"mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if dryRunOK(flags) {
@@ -136,7 +136,7 @@ high-leverage courses that unlock the most programs. Requires a deep mirror
 				view.Courses = view.Courses[:limit]
 			}
 			if view.ScannedMaps == 0 {
-				view.Note = "no maps in the local mirror; run: programmapper-pp-cli mirror <college> --maps"
+				view.Note = "no maps in the local mirror; run: programmapper-cli mirror <college> --maps"
 			}
 
 			if flags.asJSON || (!isTerminal(cmd.OutOrStdout()) && !flags.csv && !flags.quiet && !flags.plain) {

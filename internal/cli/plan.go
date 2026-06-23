@@ -65,7 +65,7 @@ map JSON for a single map id instead, use 'program-maps get'.
 
 Reads the local mirror first; if the program or map is not mirrored it fetches
 live (pass --site-content when the program is not in the local store).`),
-		Example:     "  programmapper-pp-cli plan 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --agent",
+		Example:     "  programmapper-cli plan 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --agent",
 		Annotations: map[string]string{"mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 && cmd.Flags().NFlag() == 0 {
@@ -110,7 +110,7 @@ live (pass --site-content when the program is not in the local store).`),
 			// Enrich from live when the local record is a bare summary (no map id).
 			if mapID == "" && !local {
 				if scid == "" {
-					return usageErr(fmt.Errorf("program %s is not deeply mirrored; pass --site-content <id> or run: programmapper-pp-cli mirror <college> --maps", programID))
+					return usageErr(fmt.Errorf("program %s is not deeply mirrored; pass --site-content <id> or run: programmapper-cli mirror <college> --maps", programID))
 				}
 				c, cerr := flags.newClient()
 				if cerr != nil {
@@ -137,7 +137,7 @@ live (pass --site-content when the program is not in the local store).`),
 			}
 			if !ok {
 				if local {
-					fmt.Fprintf(cmd.ErrOrStderr(), "map %s not in local mirror; run: programmapper-pp-cli mirror <college> --maps\n", mapID)
+					fmt.Fprintf(cmd.ErrOrStderr(), "map %s not in local mirror; run: programmapper-cli mirror <college> --maps\n", mapID)
 					if flags.asJSON || flags.agent {
 						fmt.Fprintln(cmd.OutOrStdout(), "[]")
 					}

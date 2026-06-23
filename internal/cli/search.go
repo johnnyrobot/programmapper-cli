@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"programmapper-pp-cli/internal/store"
+	"programmapper-cli/internal/store"
 )
 
 // isNilOrEmpty checks whether a JSON object has nil or empty values for
@@ -95,16 +95,16 @@ otherwise searches local data. Falls back to local on network failure.
 In live mode: uses the API search endpoint only.
 In local mode: searches locally synced data only.`,
 		Example: `  # Search (uses API endpoint if available, local FTS otherwise)
-  programmapper-pp-cli search "error timeout"
+  programmapper-cli search "error timeout"
 
   # Force local search only
-  programmapper-pp-cli search "payment failed" --data-source local
+  programmapper-cli search "payment failed" --data-source local
 
   # Search a specific resource type locally
-  programmapper-pp-cli search "critical" --type transactions --data-source local
+  programmapper-cli search "critical" --type transactions --data-source local
 
   # JSON output for piping
-  programmapper-pp-cli search "critical" --json --limit 20`,
+  programmapper-cli search "critical" --json --limit 20`,
 		Annotations: map[string]string{"mcp:hidden": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
@@ -137,12 +137,12 @@ In local mode: searches locally synced data only.`,
 
 			// Local FTS search
 			if dbPath == "" {
-				dbPath = defaultDBPath("programmapper-pp-cli")
+				dbPath = defaultDBPath("programmapper-cli")
 			}
 
 			db, err := store.OpenWithContext(cmd.Context(), dbPath)
 			if err != nil {
-				return fmt.Errorf("opening local database: %w\nRun 'programmapper-pp-cli sync' first to populate the local database.", err)
+				return fmt.Errorf("opening local database: %w\nRun 'programmapper-cli sync' first to populate the local database.", err)
 			}
 			defer db.Close()
 

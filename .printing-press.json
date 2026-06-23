@@ -4,7 +4,7 @@
   "printing_press_version": "4.25.0",
   "api_name": "programmapper",
   "display_name": "Program Pathways Mapper",
-  "cli_name": "programmapper-pp-cli",
+  "cli_name": "programmapper-cli",
   "creator": {
     "handle": "johnnyrobot"
   },
@@ -16,7 +16,7 @@
   "run_id": "20260622-152427-8421e763",
   "category": "other",
   "description": "Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable CLI with an offline SQLite catalog and term-by-term planning no other ProgramMapper tool has.",
-  "mcp_binary": "programmapper-pp-mcp",
+  "mcp_binary": "programmapper-mcp",
   "mcp_tool_count": 20,
   "mcp_public_tool_count": 20,
   "mcp_ready": "full",

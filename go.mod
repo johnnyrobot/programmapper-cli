@@ -1,4 +1,4 @@
-module programmapper-pp-cli
+module programmapper-cli
 
 go 1.26
 

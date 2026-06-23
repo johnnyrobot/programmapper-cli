@@ -1,6 +1,6 @@
 # Compiled binaries (regenerable: go build ./cmd/...)
-/programmapper-pp-cli
-/programmapper-pp-mcp
+/programmapper-cli
+/programmapper-mcp
 *.exe
 
 # Build artifacts / MCP bundles (large, regenerable)

@@ -16,7 +16,7 @@ func newTransferLinkedCollegeCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "linked-college <site_content_id> <transfer_college_id>",
 		Short:       "Get a CSU/UC transfer college's detail for a transfer pathway",
-		Example:     "  programmapper-pp-cli transfer linked-college 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli transfer linked-college 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "transfer.linked-college", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/linked-transfer-colleges/{transfer_college_id}", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

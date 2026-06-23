@@ -21,8 +21,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"programmapper-pp-cli/internal/client"
-	"programmapper-pp-cli/internal/store"
+	"programmapper-cli/internal/client"
+	"programmapper-cli/internal/store"
 )
 
 // Local-store resource_type keys. These land in the generic `resources` table
@@ -234,7 +234,7 @@ func pmDBPath(explicit string) string {
 	if explicit != "" {
 		return explicit
 	}
-	return defaultDBPath("programmapper-pp-cli")
+	return defaultDBPath("programmapper-cli")
 }
 
 // pmRequireMirror writes a "no local mirror" hint and reports whether the db
@@ -242,7 +242,7 @@ func pmDBPath(explicit string) string {
 // and after resolving dbPath, before opening the store.
 func pmRequireMirror(cmd *cobra.Command, dbPath string, flags *rootFlags) bool {
 	if _, err := os.Stat(dbPath); os.IsNotExist(err) {
-		fmt.Fprintf(cmd.ErrOrStderr(), "no local mirror at %s\nrun: programmapper-pp-cli mirror <college> --maps\n", dbPath)
+		fmt.Fprintf(cmd.ErrOrStderr(), "no local mirror at %s\nrun: programmapper-cli mirror <college> --maps\n", dbPath)
 		if flags.asJSON || flags.agent {
 			fmt.Fprintln(cmd.OutOrStdout(), "[]")
 		}
@@ -336,7 +336,7 @@ func pmLoadProgramMap(ctx context.Context, newClient func() (*client.Client, err
 			return prog, pmMap{}, "local", nil
 		}
 		if scid == "" {
-			return prog, pmMap{}, "", usageErr(fmt.Errorf("program %s is not mirrored; pass --site-content or run: programmapper-pp-cli mirror <college> --maps", programID))
+			return prog, pmMap{}, "", usageErr(fmt.Errorf("program %s is not mirrored; pass --site-content or run: programmapper-cli mirror <college> --maps", programID))
 		}
 		c, cerr := newClient()
 		if cerr != nil {

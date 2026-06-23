@@ -1,34 +1,34 @@
 # Program Pathways Mapper Printed CLI Agent Guide
 
-This directory is a generated `programmapper-pp-cli` printed CLI. It was produced by [CLI Printing Press](https://github.com/mvanhorn/cli-printing-press), so treat systemic fixes as upstream Printing Press fixes first. Keep local edits narrow and document why a generated-tree patch belongs here.
+This directory is a generated `programmapper-cli` printed CLI. It was produced by [CLI Printing Press](https://github.com/mvanhorn/cli-printing-press), so treat systemic fixes as upstream Printing Press fixes first. Keep local edits narrow and document why a generated-tree patch belongs here.
 
 ## Local Operating Contract
 
 Start by asking the generated CLI for current runtime truth:
 
 ```bash
-programmapper-pp-cli doctor --json
-programmapper-pp-cli agent-context --pretty
+programmapper-cli doctor --json
+programmapper-cli agent-context --pretty
 ```
 
 Use runtime discovery instead of relying on a copied command list:
 
 ```bash
-programmapper-pp-cli which "<capability>" --json
-programmapper-pp-cli <command> --help
+programmapper-cli which "<capability>" --json
+programmapper-cli <command> --help
 ```
 
 Add `--agent` to command invocations for JSON, compact output, non-interactive defaults, no color, and confirmation-safe scripting:
 
 ```bash
-programmapper-pp-cli <command> --agent
+programmapper-cli <command> --agent
 ```
 
 Before running an unfamiliar command that may mutate remote state, inspect its help and prefer a dry run:
 
 ```bash
-programmapper-pp-cli <command> --help
-programmapper-pp-cli <command> --dry-run --agent
+programmapper-cli <command> --help
+programmapper-cli <command> --dry-run --agent
 ```
 
 Use `--yes --no-input` only after the target, arguments, and side effects are clear.

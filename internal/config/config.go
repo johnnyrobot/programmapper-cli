@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/pelletier/go-toml/v2"
-	"programmapper-pp-cli/internal/cliutil"
+	"programmapper-cli/internal/cliutil"
 )
 
 type Config struct {
@@ -98,7 +98,7 @@ func LegacyConfigPath() (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("resolve legacy config path: %w", err)
 	}
-	return filepath.Join(home, ".config", "programmapper-pp-cli", "config.toml"), nil
+	return filepath.Join(home, ".config", "programmapper-cli", "config.toml"), nil
 }
 
 func readConfigFile(path string, cfg *Config, owner string) error {

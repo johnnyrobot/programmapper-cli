@@ -16,7 +16,7 @@ func newCollegesListCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "list",
 		Short:       "List every college in the registry (id, active site-content id, prior-year ids)",
-		Example:     "  programmapper-pp-cli colleges list",
+		Example:     "  programmapper-cli colleges list",
 		Annotations: map[string]string{"pp:endpoint": "colleges.list", "pp:method": "GET", "pp:path": "/colleges", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			c, err := flags.newClient()

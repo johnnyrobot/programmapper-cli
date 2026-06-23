@@ -13,7 +13,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-	"programmapper-pp-cli/internal/cliutil"
+	"programmapper-cli/internal/cliutil"
 )
 
 // Profile is a named set of flag values saved for reuse across invocations.
@@ -45,7 +45,7 @@ func legacyProfileStorePath() (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("resolving home dir: %w", err)
 	}
-	dir := filepath.Join(home, ".programmapper-pp-cli")
+	dir := filepath.Join(home, ".programmapper-cli")
 	return filepath.Join(dir, "profiles.json"), nil
 }
 
@@ -190,8 +190,8 @@ entry is replaced.
 To avoid creating empty profiles, at least one non-default flag must be
 present (other than --profile, --config, and --home, which are never
 captured: they control profile/config resolution and would never apply).`,
-		Example: `  programmapper-pp-cli profile save my-defaults --json --compact
-  programmapper-pp-cli profile save tonight-defaults --region US`,
+		Example: `  programmapper-cli profile save my-defaults --json --compact
+  programmapper-cli profile save tonight-defaults --region US`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			name := args[0]
@@ -237,8 +237,8 @@ func newProfileUseCmd(flags *rootFlags) *cobra.Command {
 	return &cobra.Command{
 		Use:   "use <name>",
 		Short: "Print the flag values a profile will apply (does not execute anything)",
-		Example: `  programmapper-pp-cli profile use my-defaults
-  programmapper-pp-cli profile use tonight-defaults --json`,
+		Example: `  programmapper-cli profile use my-defaults
+  programmapper-cli profile use tonight-defaults --json`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			p, err := GetProfile(args[0])
@@ -275,8 +275,8 @@ func newProfileListCmd(flags *rootFlags) *cobra.Command {
 		Annotations: map[string]string{
 			"mcp:read-only": "true",
 		},
-		Example: `  programmapper-pp-cli profile list
-  programmapper-pp-cli profile list --json`,
+		Example: `  programmapper-cli profile list
+  programmapper-cli profile list --json`,
 		RunE: func(cmd *cobra.Command, _ []string) error {
 			s, err := loadProfileStore()
 			if err != nil {
@@ -317,8 +317,8 @@ func newProfileShowCmd(flags *rootFlags) *cobra.Command {
 		Annotations: map[string]string{
 			"mcp:read-only": "true",
 		},
-		Example: `  programmapper-pp-cli profile show my-defaults
-  programmapper-pp-cli profile show tonight-defaults --json`,
+		Example: `  programmapper-cli profile show my-defaults
+  programmapper-cli profile show tonight-defaults --json`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			p, err := GetProfile(args[0])
@@ -337,8 +337,8 @@ func newProfileDeleteCmd(flags *rootFlags) *cobra.Command {
 	return &cobra.Command{
 		Use:   "delete <name>",
 		Short: "Remove a profile",
-		Example: `  programmapper-pp-cli profile delete my-defaults --yes
-  programmapper-pp-cli profile delete old-profile --yes --json`,
+		Example: `  programmapper-cli profile delete my-defaults --yes
+  programmapper-cli profile delete old-profile --yes --json`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			name := args[0]

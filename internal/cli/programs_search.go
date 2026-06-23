@@ -20,7 +20,7 @@ func newProgramsSearchCmd(flags *rootFlags) *cobra.Command {
 		Use:   "search <site_content_id>",
 		Short: "Full-text search programs by title and description",
 		// TODO: replace placeholder example values before relying on this for live dogfood.
-		Example:     "  programmapper-pp-cli programs search 550e8400-e29b-41d4-a716-446655440000 --query example-value",
+		Example:     "  programmapper-cli programs search 550e8400-e29b-41d4-a716-446655440000 --query example-value",
 		Annotations: map[string]string{"pp:endpoint": "programs.search", "pp:method": "POST", "pp:path": "/site-contents/{site_content_id}/programs/search", "mcp:read-only": "true", "pp:no-error-path-probe": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			// Bare invocation of a command with required input prints help

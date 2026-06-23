@@ -24,8 +24,8 @@ import (
 	"strings"
 	"time"
 
-	"programmapper-pp-cli/internal/cliutil"
-	"programmapper-pp-cli/internal/config"
+	"programmapper-cli/internal/cliutil"
+	"programmapper-cli/internal/config"
 )
 
 const BinaryResponseHeader = "X-Printing-Press-Binary-Response"

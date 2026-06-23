@@ -99,7 +99,7 @@
 - (none provided — user chose "Let's go")
 
 ## Product Thesis
-- **Name:** `programmapper` (CLI `programmapper-pp-cli`)
+- **Name:** `programmapper` (CLI `programmapper-cli`)
 - **Why it should exist:** ProgramMapper is the official map of *how to actually
   finish a degree* at a CA community college — which courses, in which order, with
   transfer and career context. Today that lives behind a click-heavy Angular SPA,

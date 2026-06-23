@@ -17,7 +17,7 @@ func newProgramsPriorYearsCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "prior-years <site_content_id> <program_id>",
 		Short:       "List prior catalog years (2019+) that still have a published map for this program",
-		Example:     "  programmapper-pp-cli programs prior-years 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli programs prior-years 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "programs.prior-years", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/programs/{program_id}/prior-years-with-maps", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/mark3labs/mcp-go/server"
-	mcptools "programmapper-pp-cli/internal/mcp"
+	mcptools "programmapper-cli/internal/mcp"
 )
 
 // Transport selection order: --transport flag, then PP_MCP_TRANSPORT env,
@@ -47,7 +47,7 @@ func main() {
 		}
 	case "http":
 		httpSrv := server.NewStreamableHTTPServer(s)
-		fmt.Fprintf(os.Stderr, "programmapper-pp-mcp serving MCP over streamable HTTP at %s\n", *addr)
+		fmt.Fprintf(os.Stderr, "programmapper-mcp serving MCP over streamable HTTP at %s\n", *addr)
 		if err := httpSrv.Start(*addr); err != nil {
 			fmt.Fprintf(os.Stderr, "MCP server error: %v\n", err)
 			os.Exit(1)

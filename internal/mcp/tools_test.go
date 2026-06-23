@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	mcplib "github.com/mark3labs/mcp-go/mcp"
-	"programmapper-pp-cli/internal/cliutil"
+	"programmapper-cli/internal/cliutil"
 )
 
 func TestMCPPathResolutionMatchesCLIResolverWithHomeEnv(t *testing.T) {
@@ -50,7 +50,7 @@ func TestMCPPathResolutionMatchesCLIResolverWithPlatformDefaults(t *testing.T) {
 	if err != nil {
 		t.Fatalf("newMCPConfig() error = %v", err)
 	}
-	if want := filepath.Join(home, ".config", "programmapper-pp-cli", "config.toml"); cfg.Path != want {
+	if want := filepath.Join(home, ".config", "programmapper-cli", "config.toml"); cfg.Path != want {
 		t.Fatalf("MCP config path = %q, want %q", cfg.Path, want)
 	}
 
@@ -58,7 +58,7 @@ func TestMCPPathResolutionMatchesCLIResolverWithPlatformDefaults(t *testing.T) {
 	if err != nil {
 		t.Fatalf("mcpDBPath() error = %v", err)
 	}
-	if want := filepath.Join(home, ".local", "share", "programmapper-pp-cli", "data.db"); gotDB != want {
+	if want := filepath.Join(home, ".local", "share", "programmapper-cli", "data.db"); gotDB != want {
 		t.Fatalf("MCP db path = %q, want %q", gotDB, want)
 	}
 }

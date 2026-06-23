@@ -48,7 +48,7 @@ func newNovelCompareCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "compare <programIdA> <programIdB>",
 		Short:       "Show two programs side by side: shared courses, unique courses, and per-program units totals",
-		Example:     "  programmapper-pp-cli compare 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 a4060608-61af-8a69-5d00-66fc77c61774 --json",
+		Example:     "  programmapper-cli compare 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 a4060608-61af-8a69-5d00-66fc77c61774 --json",
 		Annotations: map[string]string{"mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 && cmd.Flags().NFlag() == 0 {
@@ -94,7 +94,7 @@ func newNovelCompareCmd(flags *rootFlags) *cobra.Command {
 				return classifyAPIError(err, flags)
 			}
 			if mapA.ProgramMapID == "" || mapB.ProgramMapID == "" {
-				fmt.Fprintln(cmd.ErrOrStderr(), "one or both program maps are not available; run: programmapper-pp-cli mirror <college> --maps")
+				fmt.Fprintln(cmd.ErrOrStderr(), "one or both program maps are not available; run: programmapper-cli mirror <college> --maps")
 				if flags.asJSON || flags.agent {
 					fmt.Fprintln(cmd.OutOrStdout(), "{}")
 				}

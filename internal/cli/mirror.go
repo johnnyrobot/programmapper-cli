@@ -18,8 +18,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"programmapper-pp-cli/internal/client"
-	"programmapper-pp-cli/internal/cliutil"
+	"programmapper-cli/internal/client"
+	"programmapper-cli/internal/cliutil"
 )
 
 func newMirrorCmd(flags *rootFlags) *cobra.Command {
@@ -41,8 +41,8 @@ clusters and program summaries. Add --maps to also fetch each program's map and
 courses (needed by plan, compare, course-programs, and bottlenecks); this makes
 many paced requests and is resumable, so re-running continues where it stopped.`),
 		Example: strings.Trim(`
-  programmapper-pp-cli mirror https://la-mission.programmapper.ws
-  programmapper-pp-cli mirror la_mission --maps --max-programs 25
+  programmapper-cli mirror https://la-mission.programmapper.ws
+  programmapper-cli mirror la_mission --maps --max-programs 25
 `, "\n"),
 		Annotations: map[string]string{"mcp:read-only": "false"},
 		RunE: func(cmd *cobra.Command, args []string) error {

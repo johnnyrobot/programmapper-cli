@@ -25,10 +25,10 @@ agents that need full API coverage.
 Run 'api' with no arguments to list all interfaces.
 Run 'api <interface>' to see that interface's methods.`,
 		Example: `  # List all available interfaces
-  programmapper-pp-cli api
+  programmapper-cli api
 
   # Show methods for a specific interface
-  programmapper-pp-cli api <interface-name>`,
+  programmapper-cli api <interface-name>`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			root := cmd.Root()
 

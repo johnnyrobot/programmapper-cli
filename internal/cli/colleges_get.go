@@ -16,7 +16,7 @@ func newCollegesGetCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "get <college_id>",
 		Short:       "Get one college by its registry id (e.g. la_mission)",
-		Example:     "  programmapper-pp-cli colleges get la_mission",
+		Example:     "  programmapper-cli colleges get la_mission",
 		Annotations: map[string]string{"pp:endpoint": "colleges.get", "pp:method": "GET", "pp:path": "/colleges/{college_id}", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

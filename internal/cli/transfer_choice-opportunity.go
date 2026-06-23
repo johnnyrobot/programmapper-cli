@@ -16,7 +16,7 @@ func newTransferChoiceOpportunityCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "choice-opportunity <site_content_id> <opportunity_id>",
 		Short:       "Get a 'choose one of' opportunity (idealized program-pathway choice) detail",
-		Example:     "  programmapper-pp-cli transfer choice-opportunity 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli transfer choice-opportunity 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "transfer.choice-opportunity", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/choice-opportunities/{opportunity_id}", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

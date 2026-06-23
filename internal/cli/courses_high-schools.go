@@ -16,7 +16,7 @@ func newCoursesHighSchoolsCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "high-schools <site_content_id> <course_id>",
 		Short:       "List high schools offering this course for dual enrollment",
-		Example:     "  programmapper-pp-cli courses high-schools 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli courses high-schools 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "courses.high-schools", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/courses/{course_id}/highSchools", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

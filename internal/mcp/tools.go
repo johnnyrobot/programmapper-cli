@@ -16,12 +16,12 @@ import (
 
 	mcplib "github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
-	"programmapper-pp-cli/internal/cli"
-	"programmapper-pp-cli/internal/client"
-	"programmapper-pp-cli/internal/cliutil"
-	"programmapper-pp-cli/internal/config"
-	"programmapper-pp-cli/internal/mcp/cobratree"
-	"programmapper-pp-cli/internal/store"
+	"programmapper-cli/internal/cli"
+	"programmapper-cli/internal/client"
+	"programmapper-cli/internal/cliutil"
+	"programmapper-cli/internal/config"
+	"programmapper-cli/internal/mcp/cobratree"
+	"programmapper-cli/internal/store"
 )
 
 const (
@@ -453,11 +453,11 @@ func makeAPIHandler(method, pathTemplate string, readOnly bool, binaryResponse b
 			case strings.Contains(msg, "HTTP 401"):
 				return mcplib.NewToolResultError("authentication failed: " + msg +
 					"\nhint: check your API credentials." +
-					"\n      Run 'programmapper-pp-cli doctor' to check auth status."), nil
+					"\n      Run 'programmapper-cli doctor' to check auth status."), nil
 			case strings.Contains(msg, "HTTP 403"):
 				return mcplib.NewToolResultError("permission denied: " + msg +
 					"\nhint: this API is configured without credentials; the service may be blocking the request by rate limit, geography, bot protection, or endpoint policy." +
-					"\n      Run 'programmapper-pp-cli doctor' to check auth status."), nil
+					"\n      Run 'programmapper-cli doctor' to check auth status."), nil
 			case strings.Contains(msg, "HTTP 404"):
 				if method == "DELETE" {
 					return mcplib.NewToolResultText("already deleted (no-op)"), nil
@@ -905,7 +905,7 @@ func handleContext(_ context.Context, _ mcplib.CallToolRequest) (*mcplib.CallToo
 		"tool_count":  20,
 		"paths":       paths,
 		// tool_surface tells agents which surface a capability lives on.
-		"tool_surface": "MCP exposes typed endpoint tools plus a runtime mirror of user-facing CLI commands. Endpoint tools keep typed schemas; command-mirror tools shell out to the companion programmapper-pp-cli binary.",
+		"tool_surface": "MCP exposes typed endpoint tools plus a runtime mirror of user-facing CLI commands. Endpoint tools keep typed schemas; command-mirror tools shell out to the companion programmapper-cli binary.",
 		"resources": []map[string]any{
 			{
 				"name":        "colleges",

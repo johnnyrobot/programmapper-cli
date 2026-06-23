@@ -17,7 +17,7 @@ func newMetaPromotedCmd(flags *rootFlags) *cobra.Command {
 		Use:         "meta",
 		Short:       "Get the ProgramMapper API version",
 		Long:        "Get the ProgramMapper API version",
-		Example:     "  programmapper-pp-cli meta",
+		Example:     "  programmapper-cli meta",
 		Annotations: map[string]string{"pp:endpoint": "meta.info", "pp:method": "GET", "pp:path": "/info", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			c, err := flags.newClient()

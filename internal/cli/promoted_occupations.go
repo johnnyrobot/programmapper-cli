@@ -18,7 +18,7 @@ func newOccupationsPromotedCmd(flags *rootFlags) *cobra.Command {
 		Use:         "occupations",
 		Short:       "Batch-fetch career data (salary, job growth) for SOC codes",
 		Long:        "Batch-fetch career data (salary, job growth) for SOC codes",
-		Example:     "  programmapper-pp-cli occupations",
+		Example:     "  programmapper-cli occupations",
 		Annotations: map[string]string{"pp:endpoint": "occupations.careers", "pp:method": "POST", "pp:path": "/standard-occupations/batch"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			// Bare invocation of a command with a required flag/body prints help

@@ -17,7 +17,7 @@ func newInterestClustersPromotedCmd(flags *rootFlags) *cobra.Command {
 		Use:         "interest-clusters <site_content_id> <cluster_id>",
 		Short:       "Get an interest cluster (program group) and the programs grouped under it",
 		Long:        "Get an interest cluster (program group) and the programs grouped under it",
-		Example:     "  programmapper-pp-cli interest-clusters 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli interest-clusters 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "interest-clusters.get", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/program-groups/{cluster_id}", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			c, err := flags.newClient()

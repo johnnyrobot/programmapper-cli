@@ -16,7 +16,7 @@ func newProgramsPathwaysCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "pathways <site_content_id> <program_id>",
 		Short:       "List a program's pathway summaries (each pathway is an alternate route)",
-		Example:     "  programmapper-pp-cli programs pathways 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli programs pathways 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "programs.pathways", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/programs/{program_id}/pathways", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

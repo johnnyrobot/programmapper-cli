@@ -17,7 +17,7 @@ func newProgramsNewerYearLinkCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "newer-year-link <site_content_id> <program_id>",
 		Short:       "Get link data to the same program in a newer catalog year",
-		Example:     "  programmapper-pp-cli programs newer-year-link 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli programs newer-year-link 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "programs.newer-year-link", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/programs/{program_id}/newer-year-link-data", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

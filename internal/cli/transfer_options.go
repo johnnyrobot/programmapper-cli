@@ -76,7 +76,7 @@ SOC codes.
 
 Use this for a program's combined transfer + career outlook. To fetch a single
 linked transfer-college record by id instead, use 'transfer linked-college'.`),
-		Example:     "  programmapper-pp-cli transfer-options a4060608-61af-8a69-5d00-66fc77c61774 --json",
+		Example:     "  programmapper-cli transfer-options a4060608-61af-8a69-5d00-66fc77c61774 --json",
 		Annotations: map[string]string{"mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 && cmd.Flags().NFlag() == 0 {

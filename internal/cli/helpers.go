@@ -15,8 +15,8 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
-	"programmapper-pp-cli/internal/client"
-	"programmapper-pp-cli/internal/cliutil"
+	"programmapper-cli/internal/client"
+	"programmapper-cli/internal/cliutil"
 	"sort"
 	"strconv"
 	"strings"
@@ -480,10 +480,10 @@ func classifyAPIError(err error, flags *rootFlags) error {
 		return classified
 	case strings.Contains(msg, "HTTP 401"):
 		return authErr(fmt.Errorf("%w\nhint: check your API credentials."+
-			"\n      Run 'programmapper-pp-cli doctor' to check auth status.", err))
+			"\n      Run 'programmapper-cli doctor' to check auth status.", err))
 	case strings.Contains(msg, "HTTP 403"):
 		return authErr(fmt.Errorf("%w\nhint: permission denied. This API is configured without credentials, so the service may be blocking the request by rate limit, geography, bot protection, or endpoint policy."+
-			"\n      Run 'programmapper-pp-cli doctor' to check connectivity.", err))
+			"\n      Run 'programmapper-cli doctor' to check connectivity.", err))
 	case strings.Contains(msg, "HTTP 404"):
 		return notFoundErr(fmt.Errorf("%w\nhint: resource not found. Run the 'list' command to see available items", err))
 	case strings.Contains(msg, "HTTP 429"):

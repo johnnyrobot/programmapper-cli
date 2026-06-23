@@ -10,7 +10,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-	"programmapper-pp-cli/internal/cliutil"
+	"programmapper-cli/internal/cliutil"
 )
 
 // agentContextSchemaVersion is bumped on any breaking change to the JSON
@@ -124,7 +124,7 @@ func buildAgentContext(rootCmd *cobra.Command) agentContext {
 	return agentContext{
 		SchemaVersion: agentContextSchemaVersion,
 		CLI: agentContextCLI{
-			Name:        "programmapper-pp-cli",
+			Name:        "programmapper-cli",
 			Description: "Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable CLI with an offline SQLite catalog and term-by-term planning no other ProgramMapper tool has.",
 			Version:     rootCmd.Version,
 		},

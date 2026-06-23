@@ -16,7 +16,7 @@ func newCoursesGetCmd(flags *rootFlags) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:         "get <site_content_id> <course_id>",
 		Short:       "Get a course's detail (units, description, requisites)",
-		Example:     "  programmapper-pp-cli courses get 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
+		Example:     "  programmapper-cli courses get 550e8400-e29b-41d4-a716-446655440000 550e8400-e29b-41d4-a716-446655440000",
 		Annotations: map[string]string{"pp:endpoint": "courses.get", "pp:method": "GET", "pp:path": "/site-contents/{site_content_id}/courses/{course_id}", "mcp:read-only": "true"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {

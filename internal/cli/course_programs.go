@@ -47,8 +47,8 @@ course id (mappedCourseId) or a course code (e.g. "NURSING 090").
 
 Use this to find which programs REQUIRE a course. To fetch a single course's
 units and description instead, use 'courses get'. Requires a deep mirror
-(programmapper-pp-cli mirror <college> --maps).`),
-		Example: "  programmapper-pp-cli course-programs \"NURSING 090\" --json",
+(programmapper-cli mirror <college> --maps).`),
+		Example: "  programmapper-cli course-programs \"NURSING 090\" --json",
 		// no-error-path-probe: any course id or code is valid input; a
 		// non-matching value returns an honest empty result, not an error.
 		Annotations: map[string]string{"mcp:read-only": "true", "pp:no-error-path-probe": "true"},
@@ -121,7 +121,7 @@ units and description instead, use 'courses get'. Requires a deep mirror
 			})
 			if len(view.Programs) == 0 {
 				if view.ScannedMaps == 0 {
-					view.Note = "no maps in the local mirror; run: programmapper-pp-cli mirror <college> --maps"
+					view.Note = "no maps in the local mirror; run: programmapper-cli mirror <college> --maps"
 				} else {
 					view.Note = fmt.Sprintf("scanned %d mirrored maps; no program uses %q", view.ScannedMaps, query)
 				}

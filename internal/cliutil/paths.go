@@ -12,7 +12,7 @@ import (
 	"sync"
 )
 
-const appName = "programmapper-pp-cli"
+const appName = "programmapper-cli"
 const envPrefix = "PROGRAMMAPPER"
 
 type PathKind int

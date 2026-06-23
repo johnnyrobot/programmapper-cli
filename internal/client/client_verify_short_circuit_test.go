@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"programmapper-pp-cli/internal/config"
+	"programmapper-cli/internal/config"
 )
 
 // recordingRoundTripper counts how many times its RoundTrip method is

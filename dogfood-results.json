@@ -1,5 +1,5 @@
 {
-  "dir": "\u003ccli-dir\u003e/programmapper-pp-cli",
+  "dir": "\u003ccli-dir\u003e/programmapper-cli",
   "spec_path": "\u003ccli-dir\u003e/spec.yaml",
   "spec_source": "bundled",
   "verdict": "PASS",
