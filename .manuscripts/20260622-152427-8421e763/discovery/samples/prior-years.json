@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "source": "live"
+  },
+  "results": [
+    {
+      "year": 2024,
+      "id": "249c9dab-8200-425f-bd36-af2cc717deda",
+      "pathwaySummary": {
+        "collegeId": "la_mission",
+        "siteContentId": "249c9dab-8200-425f-bd36-af2cc717deda",
+        "programId": "4a0cb2c2-b22f-324d-834e-80cbc2bde5f4",
+        "label": "to Career",
+        "programMapId": "4aaba26b-dcbb-48c5-a6e1-e6b04946b8ee",
+        "prior": null,
+        "next": null,
+        "defaultPathway": true,
+        "priorPathwayYearOffset": 0,
+        "pathwayTermOffset": 0,
+        "pathwayYearOffset": 0,
+        "nextPathwayTermOffset": 0,
+        "nextPathwayYearOffset": 0
+      }
+    },
+    {
+      "year": 2023,
+      "id": "57f4f3e8-a877-4969-aac0-f061698c1210",
+      "pathwaySummary": {
+        "collegeId": "la_mission",
+        "siteContentId": "57f4f3e8-a877-4969-aac0-f061698c1210",
+        "programId": "4a0cb2c2-b22f-324d-834e-80cbc2bde5f4",
+        "label": "to Career",
+        "programMapId": "4aaba26b-dcbb-48c5-a6e1-e6b04946b8ee",
+        "prior": null,
+        "next": null,
+        "defaultPathway": true,
+        "priorPathwayYearOffset": 0,
+        "pathwayTermOffset": 0,
+        "pathwayYearOffset": 0,
+        "nextPathwayTermOffset": 0,
+        "nextPathwayYearOffset": 0
+      }
+    }
+  ]
+}

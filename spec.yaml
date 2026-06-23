@@ -1,0 +1,437 @@
+name: programmapper
+description: "Program Pathways Mapper CLI — query California Community College academic program maps, courses, transfer pathways, and career data"
+version: "0.1.0"
+base_url: "https://b.api.programmapper.com"
+http_transport: browser-chrome
+health_check_path: "/info"
+category: other
+
+auth:
+  type: none
+
+config:
+  format: toml
+  path: "~/.config/programmapper-cli/config.toml"
+
+resources:
+  meta:
+    description: "API version and health"
+    endpoints:
+      info:
+        method: GET
+        path: "/info"
+        description: "Get the ProgramMapper API version"
+        response:
+          type: object
+
+  colleges:
+    description: "California Community Colleges in the ProgramMapper registry"
+    endpoints:
+      list:
+        method: GET
+        path: "/colleges"
+        description: "List every college in the registry (id, active site-content id, prior-year ids)"
+        response:
+          type: array
+          item: College
+      get:
+        method: GET
+        path: "/colleges/{college_id}"
+        description: "Get one college by its registry id (e.g. la_mission)"
+        params:
+          - name: college_id
+            type: string
+            required: true
+            positional: true
+            description: "College registry id, e.g. la_mission"
+        response:
+          type: object
+          item: College
+      resolve:
+        method: GET
+        path: "/colleges"
+        description: "Resolve the college(s) for a ProgramMapper vanity URL"
+        params:
+          - name: url
+            flag_name: vanity-url
+            type: string
+            required: true
+            description: "Full ProgramMapper site URL incl. scheme, e.g. https://la-mission.programmapper.ws"
+        response:
+          type: array
+          item: College
+
+  site-contents:
+    description: "Per-college, per-year catalog config (one site-content per college-year)"
+    endpoints:
+      get:
+        method: GET
+        path: "/site-contents/{site_content_id}"
+        description: "Get a college-year's config (name, year, theme, titles)"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id (resolve via 'colleges resolve' -> activeSiteContentId)"
+        response:
+          type: object
+          item: SiteContent
+      home:
+        method: GET
+        path: "/site-contents/{site_content_id}/home-page-content"
+        description: "Get the home page: interest clusters (Areas of Interest), title, about"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+        response:
+          type: object
+          item: HomePageContent
+
+  interest-clusters:
+    description: "Guided Pathways 'Areas of Interest' grouping programs (program-groups)"
+    endpoints:
+      get:
+        method: GET
+        path: "/site-contents/{site_content_id}/program-groups/{cluster_id}"
+        description: "Get an interest cluster (program group) and the programs grouped under it"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: cluster_id
+            type: string
+            required: true
+            positional: true
+            description: "Interest cluster masterRecordId (from 'site-contents home')"
+        response:
+          type: object
+
+  programs:
+    description: "Degrees and certificates offered at a college"
+    endpoints:
+      search:
+        method: POST
+        path: "/site-contents/{site_content_id}/programs/search"
+        description: "Full-text search programs by title and description"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+        body:
+          - name: searchString
+            flag_name: query
+            type: string
+            required: true
+            description: "Search text to match against program titles and descriptions"
+        response:
+          type: array
+          item: ProgramSummary
+        response_path: programs
+      get:
+        method: GET
+        path: "/site-contents/{site_content_id}/programs/{program_id}"
+        description: "Get a program's full detail (description, award, pathways, map refs)"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: program_id
+            type: string
+            required: true
+            positional: true
+            description: "Program id (from 'programs search' or 'interest-clusters get')"
+        response:
+          type: object
+      pathways:
+        method: GET
+        path: "/site-contents/{site_content_id}/programs/{program_id}/pathways"
+        description: "List a program's pathway summaries (each pathway is an alternate route)"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: program_id
+            type: string
+            required: true
+            positional: true
+            description: "Program id"
+        response:
+          type: array
+      prior-years:
+        method: GET
+        path: "/site-contents/{site_content_id}/programs/{program_id}/prior-years-with-maps"
+        description: "List prior catalog years (2019+) that still have a published map for this program"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: program_id
+            type: string
+            required: true
+            positional: true
+            description: "Program id"
+          - name: requestedProgramMapId
+            flag_name: program-map-id
+            type: string
+            required: false
+            description: "Optional: anchor the comparison to a specific program-map id"
+      newer-year-link:
+        method: GET
+        path: "/site-contents/{site_content_id}/programs/{program_id}/newer-year-link-data"
+        description: "Get link data to the same program in a newer catalog year"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: program_id
+            type: string
+            required: true
+            positional: true
+            description: "Program id"
+          - name: requestedProgramMapId
+            flag_name: program-map-id
+            type: string
+            required: false
+            description: "Optional: anchor to a specific program-map id"
+      linked:
+        method: GET
+        path: "/site-contents/{site_content_id}/linked-programs/{program_id}"
+        description: "Get a linked (transfer-partner) program"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: program_id
+            type: string
+            required: true
+            positional: true
+            description: "Linked program id"
+
+  program-maps:
+    description: "Semester-by-semester course plans for a program pathway"
+    endpoints:
+      get:
+        method: GET
+        path: "/site-contents/{site_content_id}/program-maps/{map_id}"
+        description: "Get a program map: terms -> course/choice opportunities with units"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: map_id
+            type: string
+            required: true
+            positional: true
+            description: "Program map id (from a program's pathways/detail)"
+        response:
+          type: object
+      linked:
+        method: GET
+        path: "/site-contents/{site_content_id}/linked-program-maps/{map_id}"
+        description: "Get a linked (transfer-partner) program map"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: map_id
+            type: string
+            required: true
+            positional: true
+            description: "Linked program map id"
+        response:
+          type: object
+
+  courses:
+    description: "Individual courses referenced by program maps"
+    endpoints:
+      get:
+        method: GET
+        path: "/site-contents/{site_content_id}/courses/{course_id}"
+        description: "Get a course's detail (units, description, requisites)"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: course_id
+            type: string
+            required: true
+            positional: true
+            description: "Course id (mappedCourseId from a program map)"
+        response:
+          type: object
+      high-schools:
+        method: GET
+        path: "/site-contents/{site_content_id}/courses/{course_id}/highSchools"
+        description: "List high schools offering this course for dual enrollment"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: course_id
+            type: string
+            required: true
+            positional: true
+            description: "Course id"
+        response:
+          type: array
+
+  transfer:
+    description: "CSU/UC transfer pathways and 'choose one of' opportunities"
+    endpoints:
+      linked-college:
+        method: GET
+        path: "/site-contents/{site_content_id}/linked-transfer-colleges/{transfer_college_id}"
+        description: "Get a CSU/UC transfer college's detail for a transfer pathway"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: transfer_college_id
+            type: string
+            required: true
+            positional: true
+            description: "Linked transfer college id"
+        response:
+          type: object
+      choice-opportunity:
+        method: GET
+        path: "/site-contents/{site_content_id}/choice-opportunities/{opportunity_id}"
+        description: "Get a 'choose one of' opportunity (idealized program-pathway choice) detail"
+        params:
+          - name: site_content_id
+            type: string
+            required: true
+            positional: true
+            description: "Site-content id"
+          - name: opportunity_id
+            type: string
+            required: true
+            positional: true
+            description: "Choice opportunity id"
+        response:
+          type: object
+
+  occupations:
+    description: "Career and salary outcomes keyed by SOC code"
+    endpoints:
+      careers:
+        method: POST
+        path: "/standard-occupations/batch"
+        description: "Batch-fetch career data (salary, job growth) for SOC codes"
+        body:
+          properties:
+            standardOccupationalCodes:
+              type: array
+              items:
+                type: string
+              required: true
+              description: "SOC (Standard Occupational Classification) codes, e.g. 29-1141.00"
+        response:
+          type: array
+
+types:
+  College:
+    fields:
+      - name: id
+        type: string
+        description: "College registry id, e.g. la_mission"
+      - name: activeSiteContentId
+        type: string
+        description: "Site-content id for the current catalog year"
+      - name: csu
+        type: bool
+        description: "Whether this is a CSU institution"
+      - name: uc
+        type: bool
+        description: "Whether this is a UC institution"
+      - name: accessibleTextColor
+        type: bool
+        description: "Accessibility text-color flag"
+
+  SiteContent:
+    fields:
+      - name: id
+        type: string
+        description: "Site-content id"
+      - name: collegeId
+        type: string
+        description: "College registry id"
+      - name: collegeName
+        type: string
+        description: "Display name, e.g. L.A. Mission College"
+      - name: year
+        type: int
+        description: "Catalog year"
+      - name: programMapTitle
+        type: string
+        description: "Label for program maps"
+      - name: homePageTitle
+        type: string
+        description: "Home page title"
+      - name: applyNowUrl
+        type: string
+        description: "College application URL"
+      - name: collegeLogo
+        type: string
+        description: "Logo URL"
+      - name: themeColor
+        type: string
+        description: "Brand color hex"
+      - name: tag
+        type: string
+        description: "Internal tag"
+
+  HomePageContent:
+    fields:
+      - name: siteContentId
+        type: string
+        description: "Site-content id"
+      - name: title
+        type: string
+        description: "Home page title"
+      - name: about
+        type: string
+        description: "About text"
+
+  ProgramSummary:
+    fields:
+      - name: programId
+        type: string
+        description: "Program id"
+      - name: title
+        type: string
+        description: "Program title"
+      - name: award
+        type: string
+        description: "Award type, e.g. Certificate of Achievement, Associate in Arts"
+      - name: truncatedDescription
+        type: string
+        description: "Short program description"

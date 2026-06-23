@@ -1,0 +1,5 @@
+{
+  "descriptions": {
+    "meta_info": "Fetch the ProgramMapper API service metadata. Takes no parameters. Returns the running API version (and any build/service info the endpoint exposes). Use this as a connectivity and version check before running data commands, or to confirm which API revision a result set came from."
+  }
+}

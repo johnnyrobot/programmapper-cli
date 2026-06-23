@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "api_name": "programmapper",
+  "run_id": "20260622-152427-8421e763",
+  "status": "pass",
+  "level": "full",
+  "matrix_size": 93,
+  "tests_passed": 93,
+  "tests_skipped": 77,
+  "auth_context": {
+    "type": "none"
+  }
+}

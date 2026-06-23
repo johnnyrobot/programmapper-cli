@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "source": "live"
+  },
+  "results": {
+    "collegeId": "la_mission",
+    "sourceProgramIri": "urn:uuid:e6d28be5-e605-15a1-f434-76070f77e64c",
+    "title": "Vocational Nursing Training Program",
+    "awardTitle": "Certificate of Achievement",
+    "description": "The Vocational Nursing curriculum prepares students to apply for licensure as a Licensed Vocational Nurse (LVN) in the state of California. Emphasis is on nursing care of clients with physical and mental disorders, health promotion activities of the nurse, human development, and the application of basic nursing skills in the care of individuals throughout their lifespan. Once licensed, the LVN may seek employment in hospitals, clinics, private physicians’ offices, and skilled nursing facilities. At the completion of the Vocational Nursing Training Program students will: • Within the vocational nurse's scope of practice, use the nursing process to guide the delivery of safe, effective, patient-centered care. • Use learned nursing skills to demonstrate effective interprofessional and patient communication with the proficiency expected of a vocational nurse. • Integrate critical thinking, professional, ethical, legal confidentiality responsibility, accountability, and respect for diversity into actions and decision-making in patient care.",
+    "additionalRequirements": null,
+    "youtubeVideoId": null,
+    "learningOutcomes": [
+      "Within the vocational nurse's scope of practice, use the nursing process to guide the delivery of safe, effective, patient-centered care.",
+      "Use learned nursing skills to demonstrate effective interprofessional and patient communication with the proficiency expected of a vocational nurse.",
+      "Integrate critical thinking, professional, ethical, legal confidentiality responsibility, accountability, and respect for diversity into actions and decision-making in patient care."
+    ],
+    "careerStandardOccupationalCodes": [
+      "29-2061"
+    ],
+    "badgeClass": null,
+    "pathways": [
+      {
+        "collegeId": "la_mission",
+        "siteContentId": "1969dfb0-9adc-4768-9385-2eda17d89839",
+        "programId": "4a0cb2c2-b22f-324d-834e-80cbc2bde5f4",
+        "label": "to Certificate",
+        "programMapId": "4aaba26b-dcbb-48c5-a6e1-e6b04946b8ee",
+        "prior": null,
+        "next": null,
+        "defaultPathway": true,
+        "priorPathwayYearOffset": 0,
+        "pathwayTermOffset": 0,
+        "pathwayYearOffset": 0,
+        "nextPathwayTermOffset": 0,
+        "nextPathwayYearOffset": 0
+      }
+    ],
+    "catalogUrl": "http://www.lamission.edu/Schedule.aspx",
+    "programId": "4a0cb2c2-b22f-324d-834e-80cbc2bde5f4",
+    "siteContentId": "1969dfb0-9adc-4768-9385-2eda17d89839",
+    "linkedPathway": true,
+    "advisingLink": "http://lamission.edu/Counseling/Services/Services-By-Appointment.aspx",
+    "registrationLink": "http://www.lamission.edu/register.aspx",
+    "controlNumber": "43439",
+    "additionalInfoLink": null
+  }
+}

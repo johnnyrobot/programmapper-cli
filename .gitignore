@@ -1,0 +1,17 @@
+# Compiled binaries (regenerable: go build ./cmd/...)
+/programmapper-pp-cli
+/programmapper-pp-mcp
+*.exe
+
+# Build artifacts / MCP bundles (large, regenerable)
+/build/
+
+# Local SQLite mirror / cache
+*.db
+*.db-shm
+*.db-wal
+data.db
+
+# Go workspace
+go.work
+go.work.sum

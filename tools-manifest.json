@@ -1,0 +1,424 @@
+{
+  "api_name": "programmapper",
+  "base_url": "https://b.api.programmapper.com",
+  "description": "Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable CLI with an offline SQLite catalog and term-by-term planning no other ProgramMapper tool has.",
+  "mcp_ready": "full",
+  "http_transport": "browser-chrome",
+  "auth": {
+    "type": "none"
+  },
+  "required_headers": [],
+  "tools": [
+    {
+      "name": "colleges_get",
+      "description": "Get one college by its registry id (e.g. la_mission). Required: college_id. Returns the College.",
+      "method": "GET",
+      "path": "/colleges/{college_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "college_id",
+          "type": "string",
+          "location": "path",
+          "description": "College registry id, e.g. la_mission",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "colleges_list",
+      "description": "List every college in the registry (id, active site-content id, prior-year ids). Returns array of College.",
+      "method": "GET",
+      "path": "/colleges",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "colleges_resolve",
+      "description": "Resolve the college(s) for a ProgramMapper vanity URL. Required: vanity-url. Returns array of College.",
+      "method": "GET",
+      "path": "/colleges",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "vanity-url",
+          "wire_name": "url",
+          "type": "string",
+          "location": "query",
+          "description": "Full ProgramMapper site URL incl. scheme, e.g. https://la-mission.programmapper.ws",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "courses_get",
+      "description": "Get a course's detail (units, description, requisites). Required: site_content_id, course_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/courses/{course_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "course_id",
+          "type": "string",
+          "location": "path",
+          "description": "Course id (mappedCourseId from a program map)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "courses_high-schools",
+      "description": "List high schools offering this course for dual enrollment. Required: site_content_id, course_id. Returns array.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/courses/{course_id}/highSchools",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "course_id",
+          "type": "string",
+          "location": "path",
+          "description": "Course id",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "interest-clusters_get",
+      "description": "Get an interest cluster (program group) and the programs grouped under it. Required: site_content_id, cluster_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/program-groups/{cluster_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "cluster_id",
+          "type": "string",
+          "location": "path",
+          "description": "Interest cluster masterRecordId (from 'site-contents home')",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "meta_info",
+      "description": "Get the ProgramMapper API version.",
+      "method": "GET",
+      "path": "/info",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "occupations_careers",
+      "description": "Batch-fetch career data (salary, job growth) for SOC codes. Required: standardOccupationalCodes. Returns array.",
+      "method": "POST",
+      "path": "/standard-occupations/batch",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "standardOccupationalCodes",
+          "type": "array",
+          "location": "body",
+          "description": "SOC (Standard Occupational Classification) codes, e.g. 29-1141.00",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "program-maps_get",
+      "description": "Get a program map: terms -\u003e course/choice opportunities with units. Required: site_content_id, map_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/program-maps/{map_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "map_id",
+          "type": "string",
+          "location": "path",
+          "description": "Program map id (from a program's pathways/detail)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "program-maps_linked",
+      "description": "Get a linked (transfer-partner) program map. Required: site_content_id, map_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/linked-program-maps/{map_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "map_id",
+          "type": "string",
+          "location": "path",
+          "description": "Linked program map id",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "programs_get",
+      "description": "Get a program's full detail (description, award, pathways, map refs). Required: site_content_id, program_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/programs/{program_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "program_id",
+          "type": "string",
+          "location": "path",
+          "description": "Program id (from 'programs search' or 'interest-clusters get')",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "programs_linked",
+      "description": "Get a linked (transfer-partner) program. Required: site_content_id, program_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/linked-programs/{program_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "program_id",
+          "type": "string",
+          "location": "path",
+          "description": "Linked program id",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "programs_newer-year-link",
+      "description": "Get link data to the same program in a newer catalog year. Required: site_content_id, program_id. Optional: program-map-id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/programs/{program_id}/newer-year-link-data",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "program_id",
+          "type": "string",
+          "location": "path",
+          "description": "Program id",
+          "required": true
+        },
+        {
+          "name": "program-map-id",
+          "wire_name": "requestedProgramMapId",
+          "type": "string",
+          "location": "query",
+          "description": "Optional: anchor to a specific program-map id"
+        }
+      ]
+    },
+    {
+      "name": "programs_pathways",
+      "description": "List a program's pathway summaries (each pathway is an alternate route). Required: site_content_id, program_id. Returns array.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/programs/{program_id}/pathways",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "program_id",
+          "type": "string",
+          "location": "path",
+          "description": "Program id",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "programs_prior-years",
+      "description": "List prior catalog years (2019+) that still have a published map for this program. Required: site_content_id, program_id. Optional: program-map-id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/programs/{program_id}/prior-years-with-maps",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "program_id",
+          "type": "string",
+          "location": "path",
+          "description": "Program id",
+          "required": true
+        },
+        {
+          "name": "program-map-id",
+          "wire_name": "requestedProgramMapId",
+          "type": "string",
+          "location": "query",
+          "description": "Optional: anchor the comparison to a specific program-map id"
+        }
+      ]
+    },
+    {
+      "name": "programs_search",
+      "description": "Full-text search programs by title and description. Required: site_content_id, query. Returns array of ProgramSummary.",
+      "method": "POST",
+      "path": "/site-contents/{site_content_id}/programs/search",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "query",
+          "wire_name": "searchString",
+          "type": "string",
+          "location": "body",
+          "description": "Search text to match against program titles and descriptions",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "site-contents_get",
+      "description": "Get a college-year's config (name, year, theme, titles). Required: site_content_id. Returns the SiteContent.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id (resolve via 'colleges resolve' -\u003e activeSiteContentId)",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "site-contents_home",
+      "description": "Get the home page: interest clusters (Areas of Interest), title, about. Required: site_content_id. Returns the HomePageContent.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/home-page-content",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "transfer_choice-opportunity",
+      "description": "Get a 'choose one of' opportunity (idealized program-pathway choice) detail. Required: site_content_id, opportunity_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/choice-opportunities/{opportunity_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "opportunity_id",
+          "type": "string",
+          "location": "path",
+          "description": "Choice opportunity id",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "transfer_linked-college",
+      "description": "Get a CSU/UC transfer college's detail for a transfer pathway. Required: site_content_id, transfer_college_id.",
+      "method": "GET",
+      "path": "/site-contents/{site_content_id}/linked-transfer-colleges/{transfer_college_id}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "site_content_id",
+          "type": "string",
+          "location": "path",
+          "description": "Site-content id",
+          "required": true
+        },
+        {
+          "name": "transfer_college_id",
+          "type": "string",
+          "location": "path",
+          "description": "Linked transfer college id",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

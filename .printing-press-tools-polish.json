@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-06-23T00:21:35.805883Z",
+  "cli_dir": "\u003ccli-dir\u003e/programmapper-pp-cli",
+  "findings": null,
+  "scorecard_before": {
+    "mcp_description_quality": 10,
+    "captured": "2026-06-23T00:20:12.942386Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-23T00:23:13.0592Z",
+  "printing_press_version": "4.25.0",
+  "api_name": "programmapper",
+  "display_name": "Program Pathways Mapper",
+  "cli_name": "programmapper-pp-cli",
+  "creator": {
+    "handle": "johnnyrobot"
+  },
+  "owner": "johnnyrobot",
+  "printer": "johnnyrobot",
+  "spec_path": "programmapper-spec.yaml",
+  "spec_format": "internal",
+  "spec_checksum": "sha256:ede524f36f6e72460e55392d7e05c9744133270b306d4fb187654a8ee1a978af",
+  "run_id": "20260622-152427-8421e763",
+  "category": "other",
+  "description": "Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable CLI with an offline SQLite catalog and term-by-term planning no other ProgramMapper tool has.",
+  "mcp_binary": "programmapper-pp-mcp",
+  "mcp_tool_count": 20,
+  "mcp_public_tool_count": 20,
+  "mcp_ready": "full",
+  "api_version": "0.1.0",
+  "auth_type": "none",
+  "novel_features": [
+    {
+      "name": "Term-by-term planner",
+      "command": "plan",
+      "description": "Build a program's full semester-by-semester plan with per-term and cumulative units, expanding required courses and 'choose one of' options."
+    },
+    {
+      "name": "Cross-program compare",
+      "command": "compare",
+      "description": "Show two programs side by side: shared courses, unique courses, and per-program units totals."
+    },
+    {
+      "name": "Catalog-year diff",
+      "command": "diff-years",
+      "description": "Diff a program's current map against a prior catalog year (2019-2025) and report added, removed, and changed courses plus unit deltas."
+    },
+    {
+      "name": "Course-to-program reverse lookup",
+      "command": "course-programs",
+      "description": "List every program and map at the synced college whose term plan includes a given course."
+    },
+    {
+      "name": "Bottleneck courses",
+      "command": "bottlenecks",
+      "description": "Rank courses across the synced college by how many program maps require them and by units, surfacing high-leverage and high-load courses."
+    },
+    {
+      "name": "Cross-college search",
+      "command": "search",
+      "description": "Full-text search programs and courses across every synced college at once, offline."
+    },
+    {
+      "name": "Transfer rollup",
+      "command": "transfer-options",
+      "description": "Combine a program's CSU/UC linked transfer colleges and linked program maps into one view."
+    }
+  ]
+}

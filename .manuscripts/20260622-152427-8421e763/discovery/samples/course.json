@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "source": "live"
+  },
+  "results": {
+    "sourceCourseIri": "urn:uuid:977b8c2e-a7fd-d707-3d1e-7936d418ff54",
+    "courseCode": "NURSING 090",
+    "title": "Fundamental Vocational Nursing Skills Laboratory",
+    "description": "This course prepares students to develop the fundamental skills to practice vocational nursing. Students will learn the concepts of communication techniques, documentation, and legal and ethical considerations within the healthcare system.",
+    "labHours": 3.0,
+    "lectureHours": 0.0,
+    "prerequisiteText": null,
+    "prerequisites": [],
+    "rawMinUnits": 1.0,
+    "rawMaxUnits": 1.0,
+    "masterRecordId": "4b1be106-ca1a-ec4b-7453-c521f8ae58db",
+    "siteContentId": "1969dfb0-9adc-4768-9385-2eda17d89839",
+    "badgeClasses": [],
+    "highSchools": null,
+    "hasCreditsForPriorLearning": false,
+    "maxUnits": 0.0,
+    "minUnits": 0.0,
+    "priorLearningCredits": []
+  }
+}

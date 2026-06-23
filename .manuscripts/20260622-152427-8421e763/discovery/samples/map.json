@@ -1,0 +1,510 @@
+{
+  "meta": {
+    "source": "live"
+  },
+  "results": {
+    "programMapId": "4aaba26b-dcbb-48c5-a6e1-e6b04946b8ee",
+    "siteContentId": "1969dfb0-9adc-4768-9385-2eda17d89839",
+    "collegeId": "la_mission",
+    "programId": "Vocational Nursing Training Program",
+    "programTitle": "Certificate of Achievement",
+    "programAward": "4a0cb2c2-b22f-324d-834e-80cbc2bde5f4",
+    "label": "to Certificate",
+    "emphasis": null,
+    "termsToCompletion": 4,
+    "pathwayElements": [
+      {
+        "id": "cac37343-b3a2-494e-98ab-05dd49bb795f",
+        "name": "NURSING 090",
+        "shortDescription": "Fundamental Vocational Nursing Skills Laboratory",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Fall ",
+            "termNumber": 1,
+            "year": 2025
+          },
+          "courseCode": "NURSING 090",
+          "courseName": "Fundamental Vocational Nursing Skills Laboratory",
+          "mappedCourseId": "4b1be106-ca1a-ec4b-7453-c521f8ae58db",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 1.0,
+          "maxUnits": 1.0,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 0.0,
+          "labHours": 3.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [
+          {
+            "elementId": "cac37343-b3a2-494e-98ab-05dd49bb795f",
+            "type": "REQUIREMENT_OF",
+            "associatedElementId": "21d90970-a278-4004-8b01-5c456d896113"
+          },
+          {
+            "elementId": "cac37343-b3a2-494e-98ab-05dd49bb795f",
+            "type": "REQUIREMENT_OF",
+            "associatedElementId": "a5f3714b-bf33-4294-ba8d-30e2472414e7"
+          }
+        ],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "a6df4421-7bbe-423f-bf5f-1be54dede59b",
+        "name": "NURSING 091",
+        "shortDescription": "Fundamentals of Patient Care for Vocational Nursing",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Fall ",
+            "termNumber": 1,
+            "year": 2025
+          },
+          "courseCode": "NURSING 091",
+          "courseName": "Fundamentals of Patient Care for Vocational Nursing",
+          "mappedCourseId": "9026463d-e688-3003-7453-2bfaecaa75e2",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 10.0,
+          "maxUnits": 10.0,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 5.0,
+          "labHours": 15.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [
+          {
+            "elementId": "a6df4421-7bbe-423f-bf5f-1be54dede59b",
+            "type": "REQUIREMENT_OF",
+            "associatedElementId": "21d90970-a278-4004-8b01-5c456d896113"
+          },
+          {
+            "elementId": "a6df4421-7bbe-423f-bf5f-1be54dede59b",
+            "type": "REQUIREMENT_OF",
+            "associatedElementId": "2c1c0f37-2797-47b2-b7e0-776ee4537ae4"
+          },
+          {
+            "elementId": "a6df4421-7bbe-423f-bf5f-1be54dede59b",
+            "type": "REQUIREMENT_OF",
+            "associatedElementId": "984ab676-2a34-4f99-9944-f7e28fa9debc"
+          }
+        ],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "996e5518-9df6-4480-80c4-d030fd297825",
+        "name": "NURSING 092",
+        "shortDescription": "Medication Administration for Vocational Nursing",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Fall ",
+            "termNumber": 1,
+            "year": 2025
+          },
+          "courseCode": "NURSING 092",
+          "courseName": "Medication Administration for Vocational Nursing",
+          "mappedCourseId": "129e7fc0-00ff-a6f5-ba99-b1eb8e463faf",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 1.0,
+          "maxUnits": 1.0,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 1.0,
+          "labHours": 0.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "104dcc03-e151-42e5-b7eb-c5a3017bad73",
+        "name": "Visit the Career Center",
+        "shortDescription": "Visit the Career Center",
+        "requirement": {
+          "requirementType": "MILESTONE"
+        },
+        "recommendedOpportunity": {
+          "type": "MILESTONE",
+          "title": "Visit the Career Center",
+          "shortDescription": "Visit the Career Center",
+          "longDescription": "The Career Center can help you research careers within your CAP (or we indicate each specific major, ex: Sociology), register for Mission College job board to find internship \u0026 employment opportunities, if you’re undecided take a career assessment to help choose your major, and attend “Job Ready” workshops.",
+          "term": {
+            "customLabel": "Fall ",
+            "termNumber": 1,
+            "year": 2025
+          },
+          "linkUrl": "https://www.lamission.edu/Career-Center/Home.aspx",
+          "linkName": "LAMC Career Center",
+          "type": "MILESTONE"
+        },
+        "elementAssociations": [],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "21d90970-a278-4004-8b01-5c456d896113",
+        "name": "NURSING 093",
+        "shortDescription": "Maternity and Pediatric for Vocational Nursing",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Winter",
+            "termNumber": 2,
+            "year": 2026
+          },
+          "courseCode": "NURSING 093",
+          "courseName": "Maternity and Pediatric for Vocational Nursing",
+          "mappedCourseId": "ff7e4d1b-6d1d-56bf-ee9d-dfe331c163f8",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 3.5,
+          "maxUnits": 3.5,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 2.0,
+          "labHours": 5.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [
+          {
+            "elementId": "21d90970-a278-4004-8b01-5c456d896113",
+            "type": "REQUIRES",
+            "associatedElementId": "cac37343-b3a2-494e-98ab-05dd49bb795f"
+          },
+          {
+            "elementId": "21d90970-a278-4004-8b01-5c456d896113",
+            "type": "REQUIRES",
+            "associatedElementId": "a6df4421-7bbe-423f-bf5f-1be54dede59b"
+          }
+        ],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "a5f3714b-bf33-4294-ba8d-30e2472414e7",
+        "name": "NURSING 094",
+        "shortDescription": "Intermediate Vocational Nursing Skills Laboratory",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Spring",
+            "termNumber": 3,
+            "year": 2026
+          },
+          "courseCode": "NURSING 094",
+          "courseName": "Intermediate Vocational Nursing Skills Laboratory",
+          "mappedCourseId": "54b3865c-c827-b893-53ce-470e0a546518",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 1.0,
+          "maxUnits": 1.0,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 0.0,
+          "labHours": 3.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [
+          {
+            "elementId": "a5f3714b-bf33-4294-ba8d-30e2472414e7",
+            "type": "REQUIRES",
+            "associatedElementId": "cac37343-b3a2-494e-98ab-05dd49bb795f"
+          }
+        ],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "2c1c0f37-2797-47b2-b7e0-776ee4537ae4",
+        "name": "NURSING 095",
+        "shortDescription": "Intermediate Vocational Nursing",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Spring",
+            "termNumber": 3,
+            "year": 2026
+          },
+          "courseCode": "NURSING 095",
+          "courseName": "Intermediate Vocational Nursing",
+          "mappedCourseId": "76a28bba-67c1-df6b-3d7a-63443f03e5df",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 10.0,
+          "maxUnits": 10.0,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 5.0,
+          "labHours": 15.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [
+          {
+            "elementId": "2c1c0f37-2797-47b2-b7e0-776ee4537ae4",
+            "type": "REQUIRES",
+            "associatedElementId": "a6df4421-7bbe-423f-bf5f-1be54dede59b"
+          }
+        ],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "19fc6e70-6ac4-4192-85dc-57ccbd2b986d",
+        "name": "NURSING 096",
+        "shortDescription": "Mental Health for Vocational Nursing",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Spring",
+            "termNumber": 3,
+            "year": 2026
+          },
+          "courseCode": "NURSING 096",
+          "courseName": "Mental Health for Vocational Nursing",
+          "mappedCourseId": "c79d7221-ca38-5dc0-67fd-1ca6a1dc7b80",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 2.0,
+          "maxUnits": 2.0,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 2.0,
+          "labHours": 0.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "984ab676-2a34-4f99-9944-f7e28fa9debc",
+        "name": "NURSING 097",
+        "shortDescription": "Advanced Vocational Nursing Leadership and Medical-Surgical Nursing",
+        "requirement": {
+          "requirementType": "MAJOR_CORE"
+        },
+        "recommendedOpportunity": {
+          "type": "COURSE",
+          "term": {
+            "customLabel": "Summer",
+            "termNumber": 4,
+            "year": 2026
+          },
+          "courseCode": "NURSING 097",
+          "courseName": "Advanced Vocational Nursing Leadership and Medical-Surgical Nursing",
+          "mappedCourseId": "9a7dfc80-f14d-8c8c-02ad-cd19b53c31a7",
+          "hasBadge": false,
+          "recommended": true,
+          "minUnits": 9.0,
+          "maxUnits": 9.0,
+          "dualRequirement": null,
+          "courseNotes": null,
+          "minHours": 0.0,
+          "maxHours": 0.0,
+          "lectureHours": 5.0,
+          "labHours": 12.0,
+          "units": -1.0,
+          "type": "COURSE"
+        },
+        "elementAssociations": [
+          {
+            "elementId": "984ab676-2a34-4f99-9944-f7e28fa9debc",
+            "type": "REQUIRES",
+            "associatedElementId": "a6df4421-7bbe-423f-bf5f-1be54dede59b"
+          }
+        ],
+        "hasPriorLearningCredit": false
+      },
+      {
+        "id": "07db95c9-2b86-4bfd-90bd-b7ec8065e5f3",
+        "name": "Earn your Certificate!",
+        "shortDescription": "Petition to receive your certificate",
+        "requirement": {
+          "requirementType": "MILESTONE"
+        },
+        "recommendedOpportunity": {
+          "type": "MILESTONE",
+          "title": "Earn your Certificate!",
+          "shortDescription": "Petition to receive your certificate",
+          "longDescription": "Make an appointment with your counselor to petition for your certificate if this is your final semester. Planning to take more classes? Be sure to ask your counselor.",
+          "term": {
+            "customLabel": "Summer",
+            "termNumber": 4,
+            "year": 2026
+          },
+          "linkUrl": "https://www.lamission.edu/Counseling/Home.aspx",
+          "linkName": "Make an appointment with your counselor today!",
+          "type": "MILESTONE"
+        },
+        "elementAssociations": [],
+        "hasPriorLearningCredit": false
+      }
+    ],
+    "layout": {
+      "type": "TERM_AND_REQUIREMENT_TYPE",
+      "termColumns": [
+        {
+          "cards": [
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "cac37343-b3a2-494e-98ab-05dd49bb795f",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "a6df4421-7bbe-423f-bf5f-1be54dede59b",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "996e5518-9df6-4480-80c4-d030fd297825",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "104dcc03-e151-42e5-b7eb-c5a3017bad73",
+              "type": "PATHWAY_ELEMENT_CARD"
+            }
+          ],
+          "term": {
+            "customLabel": "Fall ",
+            "termNumber": 1,
+            "year": 2025
+          },
+          "empty": false
+        },
+        {
+          "cards": [
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "21d90970-a278-4004-8b01-5c456d896113",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "SPACER_CARD",
+              "type": "SPACER_CARD"
+            },
+            {
+              "type": "SPACER_CARD",
+              "type": "SPACER_CARD"
+            },
+            {
+              "type": "SPACER_CARD",
+              "type": "SPACER_CARD"
+            }
+          ],
+          "term": {
+            "customLabel": "Winter",
+            "termNumber": 2,
+            "year": 2026
+          },
+          "empty": false
+        },
+        {
+          "cards": [
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "a5f3714b-bf33-4294-ba8d-30e2472414e7",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "2c1c0f37-2797-47b2-b7e0-776ee4537ae4",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "19fc6e70-6ac4-4192-85dc-57ccbd2b986d",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "SPACER_CARD",
+              "type": "SPACER_CARD"
+            }
+          ],
+          "term": {
+            "customLabel": "Spring",
+            "termNumber": 3,
+            "year": 2026
+          },
+          "empty": false
+        },
+        {
+          "cards": [
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "984ab676-2a34-4f99-9944-f7e28fa9debc",
+              "type": "PATHWAY_ELEMENT_CARD"
+            },
+            {
+              "type": "SPACER_CARD",
+              "type": "SPACER_CARD"
+            },
+            {
+              "type": "SPACER_CARD",
+              "type": "SPACER_CARD"
+            },
+            {
+              "type": "PATHWAY_ELEMENT_CARD",
+              "pathwayElementId": "07db95c9-2b86-4bfd-90bd-b7ec8065e5f3",
+              "type": "PATHWAY_ELEMENT_CARD"
+            }
+          ],
+          "term": {
+            "customLabel": "Summer",
+            "termNumber": 4,
+            "year": 2026
+          },
+          "empty": false
+        }
+      ],
+      "type": "TERM_AND_REQUIREMENT_TYPE"
+    },
+    "missingPrerequisites": [],
+    "defaultMap": true,
+    "hideYears": true,
+    "nonCreditAward": false
+  }
+}

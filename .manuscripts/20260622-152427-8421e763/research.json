@@ -1,0 +1,224 @@
+{
+  "api_name": "programmapper",
+  "novelty_score": 9,
+  "alternatives": [],
+  "gaps": [],
+  "patterns": [],
+  "recommendation": "proceed",
+  "researched_at": "2026-06-22T22:50:00Z",
+  "novel_features": [
+    {
+      "name": "Term-by-term planner",
+      "command": "plan",
+      "description": "Build a program's full semester-by-semester plan with per-term and cumulative units, expanding required courses and 'choose one of' options.",
+      "rationale": "Requires walking the synced program-map's terms and opportunities and rolling up min/max units locally — no single ProgramMapper API call returns a units-totaled plan.",
+      "example": "programmapper-pp-cli plan 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --agent",
+      "why_it_matters": "When an agent is asked to build a 2-year academic plan, this returns the whole term structure with units in one structured call instead of paging a UI.",
+      "group": "Plan \u0026 compare from a local catalog"
+    },
+    {
+      "name": "Cross-program compare",
+      "command": "compare",
+      "description": "Show two programs side by side: shared courses, unique courses, and per-program units totals.",
+      "rationale": "Requires a SQLite join across program, map, opportunity, and course tables; the web app can only show one map at a time.",
+      "example": "programmapper-pp-cli compare 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 7b7428c7-ab0e-4e00-b9eb-08091c31b34c --json",
+      "why_it_matters": "Lets a student or agent decide between two programs by the actual course overlap and unit cost, not prose.",
+      "group": "Plan \u0026 compare from a local catalog"
+    },
+    {
+      "name": "Catalog-year diff",
+      "command": "diff-years",
+      "description": "Diff a program's current map against a prior catalog year (2019-2025) and report added, removed, and changed courses plus unit deltas.",
+      "rationale": "Joins two locally-synced map snapshots; the ProgramMapper UI has no diff view.",
+      "example": "programmapper-pp-cli diff-years 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --from-year 2023 --json",
+      "why_it_matters": "Answers 'did my program's requirements change since the catalog year I started under?' without manual side-by-side reading.",
+      "group": "Plan \u0026 compare from a local catalog"
+    },
+    {
+      "name": "Course-to-program reverse lookup",
+      "command": "course-programs",
+      "description": "List every program and map at the synced college whose term plan includes a given course.",
+      "rationale": "A reverse index over local opportunity-to-course rows; the API and UI only navigate program-to-map-to-course, never the reverse.",
+      "example": "programmapper-pp-cli course-programs \"NURSING 090\" --json",
+      "why_it_matters": "Answers a counselor's 'which programs require this course?' in one call instead of opening every map.",
+      "group": "Reverse-lookups the website can't do"
+    },
+    {
+      "name": "Bottleneck courses",
+      "command": "bottlenecks",
+      "description": "Rank courses across the synced college by how many program maps require them and by units, surfacing high-leverage and high-load courses.",
+      "rationale": "Aggregates the local opportunity-to-course index; ProgramMapper exposes no aggregation endpoint.",
+      "example": "programmapper-pp-cli bottlenecks --limit 20 --json",
+      "why_it_matters": "Shows advisors which courses unlock the most programs so scheduling and tutoring effort goes where it matters.",
+      "group": "Reverse-lookups the website can't do"
+    },
+    {
+      "name": "Cross-college search",
+      "command": "search",
+      "description": "Full-text search programs and courses across every synced college at once, offline.",
+      "rationale": "FTS5 over the local mirror; the ProgramMapper UI searches one college at a time with no cross-college view.",
+      "example": "programmapper-pp-cli search nursing --type programs --data-source local --limit 10",
+      "why_it_matters": "Finds a program or course by keyword across many colleges in one query instead of visiting each college's site.",
+      "group": "Cross-college \u0026 transfer"
+    },
+    {
+      "name": "Transfer rollup",
+      "command": "transfer-options",
+      "description": "Combine a program's CSU/UC linked transfer colleges and linked program maps into one view.",
+      "rationale": "Joins local linked-programs and linked-transfer-colleges rows; the UI shows transfer targets one at a time.",
+      "example": "programmapper-pp-cli transfer-options 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --json",
+      "why_it_matters": "Gives an agent the full set of transfer destinations for a program in one structured response.",
+      "group": "Cross-college \u0026 transfer"
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Term-by-term planner",
+      "command": "plan",
+      "description": "Build a program's full semester-by-semester plan with per-term and cumulative units, expanding required courses and 'choose one of' options.",
+      "rationale": "Requires walking the synced program-map's terms and opportunities and rolling up min/max units locally — no single ProgramMapper API call returns a units-totaled plan.",
+      "example": "programmapper-pp-cli plan 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --agent",
+      "why_it_matters": "When an agent is asked to build a 2-year academic plan, this returns the whole term structure with units in one structured call instead of paging a UI.",
+      "group": "Plan \u0026 compare from a local catalog"
+    },
+    {
+      "name": "Cross-program compare",
+      "command": "compare",
+      "description": "Show two programs side by side: shared courses, unique courses, and per-program units totals.",
+      "rationale": "Requires a SQLite join across program, map, opportunity, and course tables; the web app can only show one map at a time.",
+      "example": "programmapper-pp-cli compare 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 7b7428c7-ab0e-4e00-b9eb-08091c31b34c --json",
+      "why_it_matters": "Lets a student or agent decide between two programs by the actual course overlap and unit cost, not prose.",
+      "group": "Plan \u0026 compare from a local catalog"
+    },
+    {
+      "name": "Catalog-year diff",
+      "command": "diff-years",
+      "description": "Diff a program's current map against a prior catalog year (2019-2025) and report added, removed, and changed courses plus unit deltas.",
+      "rationale": "Joins two locally-synced map snapshots; the ProgramMapper UI has no diff view.",
+      "example": "programmapper-pp-cli diff-years 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --from-year 2023 --json",
+      "why_it_matters": "Answers 'did my program's requirements change since the catalog year I started under?' without manual side-by-side reading.",
+      "group": "Plan \u0026 compare from a local catalog"
+    },
+    {
+      "name": "Course-to-program reverse lookup",
+      "command": "course-programs",
+      "description": "List every program and map at the synced college whose term plan includes a given course.",
+      "rationale": "A reverse index over local opportunity-to-course rows; the API and UI only navigate program-to-map-to-course, never the reverse.",
+      "example": "programmapper-pp-cli course-programs \"NURSING 090\" --json",
+      "why_it_matters": "Answers a counselor's 'which programs require this course?' in one call instead of opening every map.",
+      "group": "Reverse-lookups the website can't do"
+    },
+    {
+      "name": "Bottleneck courses",
+      "command": "bottlenecks",
+      "description": "Rank courses across the synced college by how many program maps require them and by units, surfacing high-leverage and high-load courses.",
+      "rationale": "Aggregates the local opportunity-to-course index; ProgramMapper exposes no aggregation endpoint.",
+      "example": "programmapper-pp-cli bottlenecks --limit 20 --json",
+      "why_it_matters": "Shows advisors which courses unlock the most programs so scheduling and tutoring effort goes where it matters.",
+      "group": "Reverse-lookups the website can't do"
+    },
+    {
+      "name": "Cross-college search",
+      "command": "search",
+      "description": "Full-text search programs and courses across every synced college at once, offline.",
+      "rationale": "FTS5 over the local mirror; the ProgramMapper UI searches one college at a time with no cross-college view.",
+      "example": "programmapper-pp-cli search nursing --type programs --data-source local --limit 10",
+      "why_it_matters": "Finds a program or course by keyword across many colleges in one query instead of visiting each college's site.",
+      "group": "Cross-college \u0026 transfer"
+    },
+    {
+      "name": "Transfer rollup",
+      "command": "transfer-options",
+      "description": "Combine a program's CSU/UC linked transfer colleges and linked program maps into one view.",
+      "rationale": "Joins local linked-programs and linked-transfer-colleges rows; the UI shows transfer targets one at a time.",
+      "example": "programmapper-pp-cli transfer-options 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --json",
+      "why_it_matters": "Gives an agent the full set of transfer destinations for a program in one structured response.",
+      "group": "Cross-college \u0026 transfer"
+    }
+  ],
+  "auth": {},
+  "narrative": {
+    "display_name": "Program Pathways Mapper",
+    "headline": "Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable CLI with an offline SQLite catalog and term-by-term planning no other ProgramMapper tool has.",
+    "value_prop": "Program Pathways Mapper publishes the official 'how to finish your degree' roadmaps for hundreds of California community colleges, but only through a click-heavy, one-college-at-a-time web app with no API key and no export. This CLI mirrors a college's full catalog into local SQLite, then lets you - or an AI advisor - search across colleges, build a term-by-term plan with units rollups, compare two programs, find every program that requires a course, and diff catalog years. Offline, scriptable, and agent-native.",
+    "quickstart": [
+      {
+        "command": "programmapper-pp-cli doctor --dry-run",
+        "comment": "Confirm the CLI is wired up - no API key needed (the data is public)."
+      },
+      {
+        "command": "programmapper-pp-cli colleges resolve --vanity-url https://la-mission.programmapper.ws",
+        "comment": "Resolve a college to its active site-content id."
+      },
+      {
+        "command": "programmapper-pp-cli mirror la_mission",
+        "comment": "Download the college's full catalog (programs, maps, courses) into local SQLite."
+      },
+      {
+        "command": "programmapper-pp-cli search nursing --type programs --data-source local --limit 10",
+        "comment": "Search the mirrored catalog offline for matching programs."
+      },
+      {
+        "command": "programmapper-pp-cli plan 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4",
+        "comment": "Build the term-by-term plan (program id from the search results)."
+      }
+    ],
+    "troubleshoots": [
+      {
+        "symptom": "Commands return 'no local mirror' or empty results",
+        "fix": "Run 'programmapper-pp-cli mirror \u003ccollege\u003e' first to populate the local SQLite catalog."
+      },
+      {
+        "symptom": "HTTP 403 / rate-limited from the API",
+        "fix": "The ProgramMapper WAF throttles bursts per IP; the CLI uses a browser-fingerprinted client and paces requests - retry after a short pause, or lower concurrency."
+      },
+      {
+        "symptom": "'colleges resolve' returns an empty list",
+        "fix": "Pass the full URL including scheme, e.g. https://la-mission.programmapper.ws (not just the hostname)."
+      }
+    ],
+    "when_to_use": "Use this CLI to query California Community College academic catalogs programmatically: resolve a college, mirror its programs/courses/maps offline, search across colleges, build term-by-term degree plans with unit totals, compare programs, find which programs require a course, diff catalog years, and pull CSU/UC transfer and career data. It is the right tool when an agent or script needs structured, joinable academic-pathway data that the ProgramMapper web app only exposes one click at a time.",
+    "anti_triggers": [
+      "Do not use this CLI to register for classes or submit enrollment - it is read-only public catalog data, not a student information system.",
+      "Do not use it to fetch official transcripts, grades, or any protected student records - ProgramMapper carries no student data.",
+      "Do not use it for colleges outside California or outside the ProgramMapper network - it only covers CA community colleges in the registry.",
+      "Do not treat course requisite text as a structured prerequisite graph - requisites are free-text descriptions, not machine edges."
+    ],
+    "recipes": [
+      {
+        "title": "Mirror a college, then plan a degree",
+        "command": "programmapper-pp-cli mirror la_mission --maps",
+        "explanation": "Cache L.A. Mission programs, maps, and courses locally, then run plan/compare/course-programs offline."
+      },
+      {
+        "title": "Narrow a deeply nested plan for an agent",
+        "command": "programmapper-pp-cli plan 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --agent --select terms.term_number,terms.items.code,terms.items.name,terms.items.min_units",
+        "explanation": "Program maps are deeply nested; --select pulls only the term, course title, and units so an agent isn't flooded with the full map payload."
+      },
+      {
+        "title": "Find which programs require a course",
+        "command": "programmapper-pp-cli course-programs \"NURSING 090\" --json",
+        "explanation": "Reverse-lookup every program at the mirrored college whose plan includes the course - impossible in the web UI."
+      },
+      {
+        "title": "See what changed since your start year",
+        "command": "programmapper-pp-cli diff-years 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 --from-year 2023",
+        "explanation": "Diff the current Vocational Nursing map against the 2023 catalog to spot added, removed, or changed courses."
+      },
+      {
+        "title": "Compare two programs head to head",
+        "command": "programmapper-pp-cli compare 4a0cb2c2-b22f-324d-834e-80cbc2bde5f4 7b7428c7-ab0e-4e00-b9eb-08091c31b34c --json",
+        "explanation": "Show shared vs. unique courses and total units for two programs side by side."
+      }
+    ],
+    "trigger_phrases": [
+      "map out a degree at a community college",
+      "what courses do I need for nursing at LA Mission",
+      "compare two community college programs",
+      "which programs require this course",
+      "plan my CSU transfer pathway",
+      "use programmapper",
+      "run programmapper"
+    ]
+  }
+}

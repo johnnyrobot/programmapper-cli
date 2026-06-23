@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "source": "live"
+  },
+  "results": [
+    {
+      "collegeId": "la_mission",
+      "siteContentId": "1969dfb0-9adc-4768-9385-2eda17d89839",
+      "programId": "4a0cb2c2-b22f-324d-834e-80cbc2bde5f4",
+      "label": "to Certificate",
+      "programMapId": "4aaba26b-dcbb-48c5-a6e1-e6b04946b8ee",
+      "prior": null,
+      "next": null,
+      "defaultPathway": true,
+      "priorPathwayYearOffset": 0,
+      "pathwayTermOffset": 0,
+      "pathwayYearOffset": 0,
+      "nextPathwayTermOffset": 0,
+      "nextPathwayYearOffset": 0
+    }
+  ]
+}
