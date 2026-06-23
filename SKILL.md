@@ -1,5 +1,5 @@
 ---
-name: pp-programmapper
+name: programmapper
 description: "Every California Community College's program maps - degrees, courses, transfer paths, and careers - in one scriptable CLI with an offline SQLite catalog and term-by-term planning no other ProgramMapper tool has. Trigger phrases: `map out a degree at a community college`, `what courses do I need for nursing at LA Mission`, `compare two community college programs`, `which programs require this course`, `plan my CSU transfer pathway`, `use programmapper`, `run programmapper`."
 author: "johnnyrobot"
 license: "Apache-2.0"
@@ -11,33 +11,36 @@ metadata:
       bins:
         - programmapper-cli
     install:
-      - kind: source
+      - kind: go
         bins: [programmapper-cli]
-        repo: https://github.com/johnnyrobot/programmapper-cli
-        build: go build -o programmapper-cli ./cmd/programmapper-cli
+        module: github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli
 ---
 
 # Program Pathways Mapper — Printing Press CLI
 
 ## Prerequisites: Install the CLI
 
-This skill drives the `programmapper-cli` binary. **You must verify the CLI is installed before invoking any command from this skill.** If it is missing, build it from source (requires Go 1.26.4 or newer):
+This skill drives the `programmapper-cli` binary. **You must verify the CLI is installed before invoking any command from this skill.** If it is missing, install it (requires Go 1.26.4 or newer).
 
-1. Clone the repo and build the binary. The repo is **private**, so this needs access to the `johnnyrobot` GitHub account (`gh auth login` or an SSH key already configured):
-   ```bash
-   git clone https://github.com/johnnyrobot/programmapper-cli.git
-   cd programmapper-cli
-   go build -o programmapper-cli ./cmd/programmapper-cli
-   ```
-2. Put the binary on `$PATH` (defaults below assume `$HOME/.local/bin` is on `$PATH`):
-   ```bash
-   install -m 0755 programmapper-cli "$HOME/.local/bin/programmapper-cli"
-   ```
-3. Verify: `programmapper-cli --version`
+The repo is **private**, so configure Git auth and `GOPRIVATE` once, then `go install`:
 
-If `--version` reports "command not found" after install, the runtime cannot see the binary directory on `$PATH`. Do not proceed with skill commands until verification succeeds.
+```bash
+export GOPRIVATE=github.com/johnnyrobot      # skip the public proxy/sumdb for this owner
+go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli@latest
+```
 
-> `go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli@latest` is **not** available yet: the Go module is named `programmapper-cli` (a local name), not the repo URL, so `go install`/`go get` cannot resolve it. Clone-and-build is the supported path until the module is renamed to `github.com/johnnyrobot/programmapper-cli`.
+This installs into `$GOPATH/bin` (default `$HOME/go/bin`); make sure that directory is on `$PATH`. `go install` authenticates to the private repo via your existing Git credentials — `gh auth setup-git` (HTTPS + token) or a configured SSH key both work.
+
+If you'd rather build from a checkout (or `go install` can't reach the private repo), clone and build:
+
+```bash
+git clone https://github.com/johnnyrobot/programmapper-cli.git
+cd programmapper-cli
+go build -o programmapper-cli ./cmd/programmapper-cli
+install -m 0755 programmapper-cli "$HOME/.local/bin/programmapper-cli"
+```
+
+Verify either way: `programmapper-cli --version`. If it reports "command not found", the install directory is not on `$PATH` for the agent/runtime — fix that before proceeding.
 
 Program Pathways Mapper publishes the official 'how to finish your degree' roadmaps for hundreds of California community colleges, but only through a click-heavy, one-college-at-a-time web app with no API key and no export. This CLI mirrors a college's full catalog into local SQLite, then lets you - or an AI advisor - search across colleges, build a term-by-term plan with units rollups, compare two programs, find every program that requires a course, and diff catalog years. Offline, scriptable, and agent-native.
 
@@ -340,10 +343,9 @@ Parse `$ARGUMENTS`:
 
 ## MCP Server Installation
 
-1. Build the MCP server from the cloned repo (see Prerequisites above), then put it on `$PATH`:
+1. Install the MCP server (same `GOPRIVATE` + Git auth as the CLI; see Prerequisites):
    ```bash
-   go build -o programmapper-mcp ./cmd/programmapper-mcp
-   install -m 0755 programmapper-mcp "$HOME/.local/bin/programmapper-mcp"
+   go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-mcp@latest
    ```
 2. Register with Claude Code:
    ```bash

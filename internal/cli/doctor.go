@@ -14,10 +14,10 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"programmapper-cli/internal/client"
-	"programmapper-cli/internal/cliutil"
-	"programmapper-cli/internal/config"
-	"programmapper-cli/internal/store"
+	"github.com/johnnyrobot/programmapper-cli/internal/client"
+	"github.com/johnnyrobot/programmapper-cli/internal/cliutil"
+	"github.com/johnnyrobot/programmapper-cli/internal/config"
+	"github.com/johnnyrobot/programmapper-cli/internal/store"
 )
 
 // looksLikeDoctorInterstitial reports whether the response body matches a known

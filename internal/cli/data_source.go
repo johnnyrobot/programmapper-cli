@@ -17,8 +17,8 @@ import (
 	"strings"
 	"time"
 
-	"programmapper-cli/internal/client"
-	"programmapper-cli/internal/store"
+	"github.com/johnnyrobot/programmapper-cli/internal/client"
+	"github.com/johnnyrobot/programmapper-cli/internal/store"
 )
 
 const networkFallbackReason = "api_unreachable"

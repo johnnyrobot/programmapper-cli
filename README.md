@@ -6,101 +6,40 @@ Program Pathways Mapper publishes the official 'how to finish your degree' roadm
 
 ## Install
 
-The recommended path installs both the `programmapper-cli` binary and the `pp-programmapper` agent skill (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, and other agents supported by the upstream [`skills`](https://github.com/vercel-labs/skills) CLI) in one shot:
+The Go module is in this **private** repo, so configure Git auth and `GOPRIVATE` once, then `go install` the CLI (requires Go 1.26.4 or newer):
 
 ```bash
-npx -y @mvanhorn/printing-press-library install programmapper
+export GOPRIVATE=github.com/johnnyrobot
+go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli@latest
 ```
 
-For CLI only (no skill):
+This installs into `$GOPATH/bin` (default `$HOME/go/bin`) — make sure that directory is on `$PATH`. `go install` authenticates to the private repo with your existing Git credentials: `gh auth setup-git` (HTTPS + token) or a configured SSH key both work.
+
+Prefer a checkout? Clone and build:
 
 ```bash
-npx -y @mvanhorn/printing-press-library install programmapper --cli-only
+git clone https://github.com/johnnyrobot/programmapper-cli.git
+cd programmapper-cli
+go build -o programmapper-cli ./cmd/programmapper-cli
+install -m 0755 programmapper-cli "$HOME/.local/bin/programmapper-cli"
 ```
 
-For skill only — installs the skill into the same agents as the default command above, but skips the CLI binary (use this to update or reinstall just the skill):
+Verify either way: `programmapper-cli --version`.
 
-```bash
-npx -y @mvanhorn/printing-press-library install programmapper --skill-only
-```
+### Agent skill
 
-To constrain the skill install to one or more specific agents (repeatable — agent names match the [`skills`](https://github.com/vercel-labs/skills) CLI):
-
-```bash
-npx -y @mvanhorn/printing-press-library install programmapper --agent claude-code
-npx -y @mvanhorn/printing-press-library install programmapper --agent claude-code --agent codex
-```
-
-### Without Node (Go fallback)
-
-If `npx` isn't available (no Node, offline), install the CLI directly via Go (requires Go 1.26.4 or newer):
-
-```bash
-go install github.com/mvanhorn/printing-press-library/library/other/programmapper/cmd/programmapper-cli@latest
-```
-
-This installs the CLI only — no skill.
-
-### Pre-built binary
-
-Download a pre-built binary for your platform from the [latest release](https://github.com/mvanhorn/printing-press-library/releases/tag/programmapper-current). On macOS, clear the Gatekeeper quarantine: `xattr -d com.apple.quarantine <binary>`. On Unix, mark it executable: `chmod +x <binary>`.
-
-<!-- pp-hermes-install-anchor -->
-## Install for Hermes
-
-Install the CLI binary first. The installer writes binaries to a per-user managed bin directory by default: `$HOME/.local/bin` on macOS/Linux and `%LOCALAPPDATA%\Programs\PrintingPress\bin` on Windows.
-
-```bash
-npx -y @mvanhorn/printing-press-library install programmapper --cli-only
-```
-
-Then install the focused Hermes skill.
-
-From the Hermes CLI:
-
-```bash
-hermes skills install mvanhorn/printing-press-library/cli-skills/pp-programmapper --force
-```
-
-Inside a Hermes chat session:
-
-```bash
-/skills install mvanhorn/printing-press-library/cli-skills/pp-programmapper --force
-```
-
-Restart the Hermes session or gateway if the newly installed skill is not visible immediately.
-
-## Install for OpenClaw
-Install both the CLI binary and the focused OpenClaw skill. The installer defaults binaries to a per-user bin directory (`$HOME/.local/bin` on macOS/Linux, `%LOCALAPPDATA%\Programs\PrintingPress\bin` on Windows):
-
-```bash
-npx -y @mvanhorn/printing-press-library install programmapper --agent openclaw
-```
-
-Restart the OpenClaw session or gateway if the newly installed skill is not visible immediately.
+This repo ships an agent skill at [`SKILL.md`](SKILL.md) (skill name: `programmapper`). Point your agent's skill loader at this repo's `SKILL.md`, or copy it into your agent's skills directory. The skill drives the `programmapper-cli` binary, so install the CLI first.
 
 ## Use with Claude Desktop
 
-This CLI ships an [MCPB](https://github.com/modelcontextprotocol/mcpb) bundle — Claude Desktop's standard format for one-click MCP extension installs (no JSON config required).
-
-To install:
-
-1. Download the `.mcpb` for your platform from the [latest release](https://github.com/mvanhorn/printing-press-library/releases/tag/programmapper-current).
-2. Double-click the `.mcpb` file. Claude Desktop opens and walks you through the install.
-
-Requires Claude Desktop 1.0.0 or later. Pre-built bundles ship for macOS Apple Silicon (`darwin-arm64`) and Windows (`amd64`, `arm64`); for other platforms, use the manual config below.
-
-<details>
-<summary>Manual JSON config (advanced)</summary>
-
-If you can't use the MCPB bundle (older Claude Desktop, unsupported platform), install the MCP binary and configure it manually.
-
+This CLI ships an MCP server, `programmapper-mcp`. Install it the same way as the CLI:
 
 ```bash
-go install github.com/mvanhorn/printing-press-library/library/other/programmapper/cmd/programmapper-mcp@latest
+export GOPRIVATE=github.com/johnnyrobot
+go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-mcp@latest
 ```
 
-Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+Add it to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 
 ```json
 {
@@ -111,8 +50,6 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
   }
 }
 ```
-
-</details>
 
 ## Quick Start
 

@@ -1,4 +1,4 @@
-module programmapper-cli
+module github.com/johnnyrobot/programmapper-cli
 
 go 1.26
 

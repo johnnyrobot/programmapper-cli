@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/pelletier/go-toml/v2"
-	"programmapper-cli/internal/cliutil"
+	"github.com/johnnyrobot/programmapper-cli/internal/cliutil"
 )
 
 type Config struct {

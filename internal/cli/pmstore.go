@@ -21,8 +21,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"programmapper-cli/internal/client"
-	"programmapper-cli/internal/store"
+	"github.com/johnnyrobot/programmapper-cli/internal/client"
+	"github.com/johnnyrobot/programmapper-cli/internal/store"
 )
 
 // Local-store resource_type keys. These land in the generic `resources` table

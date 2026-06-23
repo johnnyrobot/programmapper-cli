@@ -6,7 +6,7 @@ package main
 import (
 	"os"
 
-	"programmapper-cli/internal/cli"
+	"github.com/johnnyrobot/programmapper-cli/internal/cli"
 )
 
 func main() {

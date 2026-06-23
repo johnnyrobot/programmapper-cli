@@ -13,7 +13,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-	"programmapper-cli/internal/cliutil"
+	"github.com/johnnyrobot/programmapper-cli/internal/cliutil"
 )
 
 // Profile is a named set of flag values saved for reuse across invocations.

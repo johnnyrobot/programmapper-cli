@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"programmapper-cli/internal/store"
+	"github.com/johnnyrobot/programmapper-cli/internal/store"
 )
 
 type syncHintState struct {

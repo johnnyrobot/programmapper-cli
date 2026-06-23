@@ -24,8 +24,8 @@ import (
 	"strings"
 	"time"
 
-	"programmapper-cli/internal/cliutil"
-	"programmapper-cli/internal/config"
+	"github.com/johnnyrobot/programmapper-cli/internal/cliutil"
+	"github.com/johnnyrobot/programmapper-cli/internal/config"
 )
 
 const BinaryResponseHeader = "X-Printing-Press-Binary-Response"

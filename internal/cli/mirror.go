@@ -18,8 +18,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"programmapper-cli/internal/client"
-	"programmapper-cli/internal/cliutil"
+	"github.com/johnnyrobot/programmapper-cli/internal/client"
+	"github.com/johnnyrobot/programmapper-cli/internal/cliutil"
 )
 
 func newMirrorCmd(flags *rootFlags) *cobra.Command {

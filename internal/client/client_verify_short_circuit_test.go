@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"programmapper-cli/internal/config"
+	"github.com/johnnyrobot/programmapper-cli/internal/config"
 )
 
 // recordingRoundTripper counts how many times its RoundTrip method is

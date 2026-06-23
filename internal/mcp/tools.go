@@ -16,12 +16,12 @@ import (
 
 	mcplib "github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
-	"programmapper-cli/internal/cli"
-	"programmapper-cli/internal/client"
-	"programmapper-cli/internal/cliutil"
-	"programmapper-cli/internal/config"
-	"programmapper-cli/internal/mcp/cobratree"
-	"programmapper-cli/internal/store"
+	"github.com/johnnyrobot/programmapper-cli/internal/cli"
+	"github.com/johnnyrobot/programmapper-cli/internal/client"
+	"github.com/johnnyrobot/programmapper-cli/internal/cliutil"
+	"github.com/johnnyrobot/programmapper-cli/internal/config"
+	"github.com/johnnyrobot/programmapper-cli/internal/mcp/cobratree"
+	"github.com/johnnyrobot/programmapper-cli/internal/store"
 )
 
 const (
