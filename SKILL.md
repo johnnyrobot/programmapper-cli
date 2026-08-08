@@ -22,23 +22,13 @@ metadata:
 
 This skill drives the `programmapper-cli` binary. **You must verify the CLI is installed before invoking any command from this skill.** If it is missing, install it (requires Go 1.26.4 or newer).
 
-The repo is **private**, so configure Git auth and `GOPRIVATE` once, then `go install`:
-
 ```bash
-export GOPRIVATE=github.com/johnnyrobot      # skip the public proxy/sumdb for this owner
 go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli@latest
 ```
 
-This installs into `$GOPATH/bin` (default `$HOME/go/bin`); make sure that directory is on `$PATH`. `go install` authenticates to the private repo via your existing Git credentials — `gh auth setup-git` (HTTPS + token) or a configured SSH key both work.
+This installs into `$GOPATH/bin` (default `$HOME/go/bin`); make sure that directory is on `$PATH`.
 
-If you'd rather build from a checkout (or `go install` can't reach the private repo), clone and build:
-
-```bash
-git clone https://github.com/johnnyrobot/programmapper-cli.git
-cd programmapper-cli
-go build -o programmapper-cli ./cmd/programmapper-cli
-install -m 0755 programmapper-cli "$HOME/.local/bin/programmapper-cli"
-```
+If Go is unavailable, download a pre-built binary from the [latest release](https://github.com/johnnyrobot/programmapper-cli/releases/latest) and put it on `$PATH`.
 
 Verify either way: `programmapper-cli --version`. If it reports "command not found", the install directory is not on `$PATH` for the agent/runtime — fix that before proceeding.
 
@@ -343,7 +333,7 @@ Parse `$ARGUMENTS`:
 
 ## MCP Server Installation
 
-1. Install the MCP server (same `GOPRIVATE` + Git auth as the CLI; see Prerequisites):
+1. Install the MCP server:
    ```bash
    go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-mcp@latest
    ```
