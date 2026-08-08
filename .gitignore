@@ -4,6 +4,7 @@
 *.exe
 
 # Build artifacts / MCP bundles (large, regenerable)
+/bin/
 /build/
 
 # Local SQLite mirror / cache

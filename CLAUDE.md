@@ -22,8 +22,6 @@ make build-all      # both binaries
 make test           # go test ./...
 make lint           # golangci-lint run
 make install        # go install ./cmd/programmapper-cli
-# Private module: authenticate git + set GOPRIVATE before `go install`/`go get`.
-export GOPRIVATE=github.com/johnnyrobot
 # Runtime discovery (prefer over a memorized command list):
 ./bin/programmapper-cli doctor --json
 ./bin/programmapper-cli agent-context --pretty

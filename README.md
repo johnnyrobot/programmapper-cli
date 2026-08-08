@@ -6,25 +6,42 @@ Program Pathways Mapper publishes the official 'how to finish your degree' roadm
 
 ## Install
 
-The Go module is in this **private** repo, so configure Git auth and `GOPRIVATE` once, then `go install` the CLI (requires Go 1.26.4 or newer):
+### Go install
+
+Requires Go 1.26.4 or newer:
 
 ```bash
-export GOPRIVATE=github.com/johnnyrobot
 go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli@latest
 ```
 
-This installs into `$GOPATH/bin` (default `$HOME/go/bin`) — make sure that directory is on `$PATH`. `go install` authenticates to the private repo with your existing Git credentials: `gh auth setup-git` (HTTPS + token) or a configured SSH key both work.
+This installs into `$GOPATH/bin` (default `$HOME/go/bin`) — make sure that directory is on `$PATH`.
 
-Prefer a checkout? Clone and build:
+### Pre-built binary
+
+Download a binary for your platform from the [latest release](https://github.com/johnnyrobot/programmapper-cli/releases/latest).
+
+On macOS, clear the Gatekeeper quarantine after downloading:
+
+```bash
+xattr -d com.apple.quarantine programmapper-cli
+```
+
+On Unix, mark it executable:
+
+```bash
+chmod +x programmapper-cli
+```
+
+### From source
 
 ```bash
 git clone https://github.com/johnnyrobot/programmapper-cli.git
 cd programmapper-cli
-go build -o programmapper-cli ./cmd/programmapper-cli
-install -m 0755 programmapper-cli "$HOME/.local/bin/programmapper-cli"
+make build          # or: go build ./cmd/programmapper-cli
+make build-all      # CLI + MCP server
 ```
 
-Verify either way: `programmapper-cli --version`.
+Verify any of these with: `programmapper-cli --version`.
 
 ### Agent skill
 
@@ -35,7 +52,6 @@ This repo ships an agent skill at [`SKILL.md`](SKILL.md) (skill name: `programma
 This CLI ships an MCP server, `programmapper-mcp`. Install it the same way as the CLI:
 
 ```bash
-export GOPRIVATE=github.com/johnnyrobot
 go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-mcp@latest
 ```
 

@@ -5,10 +5,7 @@
 > **This directory is generated output** from [CLI Printing Press](https://github.com/mvanhorn/cli-printing-press). Treat systemic bugs as upstream Printing Press fixes first. If you must edit the generated tree, keep it narrow and record the intent under `.printing-press-patches/` (a durable reprint-guard) — a fresh print overwrites unrecorded hand-edits. Do not hand-edit the release ledger (`CHANGELOG.md`, `.printing-press-release.json`, `var version = …`); the `mvanhorn/printing-press-library` publish workflow stamps the `YYYY.M.N` version on merge.
 
 ## Setup
-The module lives in a **private** GitHub repo, so configure Git auth and `GOPRIVATE` once:
 ```bash
-export GOPRIVATE=github.com/johnnyrobot
-gh auth setup-git            # or a configured SSH key
 go install github.com/johnnyrobot/programmapper-cli/cmd/programmapper-cli@latest
 ```
 Or work from a checkout: `go build ./cmd/...`. Requires Go 1.26+. No API key is needed — the catalog data is public.

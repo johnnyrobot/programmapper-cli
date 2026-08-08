@@ -1,13 +1,8 @@
-name: release
-
-# Build cross-platform binaries and attach them to a GitHub Release whenever a
-# version tag is pushed (e.g. `git tag v1.0.1 && git push origin v1.0.1`).
-# Users can then download a prebuilt binary instead of running `go install`.
+name: Release
 
 on:
   push:
-    tags:
-      - "v*"
+    tags: ['v*']
 
 permissions:
   contents: write
@@ -16,22 +11,26 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
+          # goreleaser derives the changelog and version from tag history.
           fetch-depth: 0
 
-      - name: Set up Go
-        uses: actions/setup-go@v5
+      - uses: actions/setup-go@v5
         with:
-          go-version: "1.26"
+          # Keep in step with ci.yml — see the note there about GO-2026-5856.
+          go-version: '1.26.5'
           check-latest: true
 
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v6
+      - name: Verify before publishing
+        run: |
+          go build ./...
+          go vet ./...
+          go test ./...
+
+      - uses: goreleaser/goreleaser-action@v6
         with:
-          distribution: goreleaser
-          version: "~> v2"
+          version: '~> v2'
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
