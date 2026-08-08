@@ -39,3 +39,19 @@ archives:
         formats: [zip]
 checksum:
   name_template: checksums.txt
+brews:
+  - name: programmapper-cli
+    repository:
+      owner: johnnyrobot
+      name: homebrew-tap
+      # The built-in Actions GITHUB_TOKEN is scoped to this repo only and cannot
+      # push to the tap. Needs a fine-grained PAT scoped to the tap repo with
+      # Contents: read+write, stored as the HOMEBREW_TAP_GITHUB_TOKEN secret.
+      # Without this line goreleaser silently falls back to GITHUB_TOKEN and the
+      # release fails at the formula push, after the binaries have uploaded.
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: "https://github.com/johnnyrobot/programmapper-cli"
+    description: "Every California Community College's program maps — degrees, courses, transfer paths, and careers — in one scriptable CLI with an offline SQLite catalog and term-by-term planning."
+    install: |
+      bin.install "programmapper-cli"
+      bin.install "programmapper-mcp"
